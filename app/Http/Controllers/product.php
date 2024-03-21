@@ -35,7 +35,7 @@ class product extends Controller
     {
         $categories = category::all(); // Fetch all products from the database
 
-        return view('/product', ['categories' => $categories]);
+        return view('/admin/product', ['categories' => $categories]);
     }
     public function delcat($id)
     {

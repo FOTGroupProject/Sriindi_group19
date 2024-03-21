@@ -13,7 +13,7 @@ Route::get('/orders', function () {
     return view('orders');
 });
 Route::get('/product', function () {
-    return view('product');
+    return view('admin/product');
 });
 Route::get('/profile', function () {
     return view('profile');
