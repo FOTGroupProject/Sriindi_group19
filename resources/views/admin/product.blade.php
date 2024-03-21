@@ -158,7 +158,7 @@
                                         <th>Category</th>
                                         <th>Image</th>
                                         <th>SKU</th>
-                                        <th>Veriety</th>
+                                        <th>sdescription</th>
                                         <th style="width: 70px;">Quantity</th>
                                         <th style="width: 100px;">Regular Price</th>
                                         <th style="width: 80px;">Sales Price</th>
@@ -166,27 +166,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>baselet</td>
-                                        <td>baselet</td>
-                                        <td>small</td>
-                                        <td>10</td>
-                                        <td>500</td>
-                                        <td style="width: 100px;">450</td>
-                                        <td>450</td>
-                                        <td>450</td>
-                                        <td class="text-center" style="padding: 0px;">
-                                            <form action="" method="get">
-                                            <input class="btn btn-primary" type="submit" style="background: var(--bs-teal);border-width: 0px;margin: 5px;margin-right: 0px;height: 30px;width: 61.8px;padding: 0px;position: static;display: inline-block;"value="Update"></button>
-                                        </form>
-                                        <form action="" method="get">
-                                            <input class="btn btn-primary" type="submit" style="background: var(--bs-red);border-width: 0px;margin: 5px;margin-right: 0px;height: 30px;width: 61.8px;padding: 0px;text-align: center;position: sticky;display: inline;" value="Delete"></button>></button>
-                                        </form>
-                                        </td>
-                                        <td class="text-center" style="padding: 0px;"></td>
-                                    </tr>
-                                    <tr></tr>
+                                @foreach($products as $product)
+                    <tr>
+                        <td>{{ $product->id }}</td>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->category }}</td>
+                        <td>{{ $product->image }}</td>
+                        <td>{{ $product->sku }}</td>
+                        <td>{{ $product->sdescription }}</td>
+                        <td>{{ $product->quantity }}</td>
+                        <td>{{ $product->regularprice }}</td>
+                        <td>{{ $product->salesprice }}</td>
+                        <td class="text-center" style="padding: 0px;">
+                            <form action="/updateproduct" method="post">
+                                @csrf
+                                @method('PUT')
+                                <button class="btn btn-primary" type="submit">Update</button>
+                            </form>
+                            <form action="/deleteproduct" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -209,19 +213,17 @@
                     </div>
                     <div style="border-style: solid;border-color: var(--bs-black);margin: 0px;padding: 20px;">
                         <h3 class="text-dark mb-4">Add New Product</h3>
-                        <form><label class="form-label">ID</label><input class="form-control" type="text"><label class="form-label">Name</label><input class="form-control" type="text"><label class="form-label">Short Description</label><input class="form-control" type="text"><label class="form-label">Discription</label><input class="form-control" type="text"><label class="form-label">Image</label><input class="form-control" type="file"><label class="form-label">SKU</label><input class="form-control" type="text"><label class="form-label">Category</label><select class="form-select d-inline-block form-select form-select-sm">
+                        <form method="get" action="/addproduct"><label class="form-label">Name</label><input class="form-control" type="text"><label class="form-label"name="sdescription">Short Description</label><input class="form-control" type="text"><label class="form-label">Image</label><input class="form-control" type="file" name="image"><label class="form-label">SKU</label><input class="form-control" type="text" name="sku"><label class="form-label">Category</label><select class="form-select d-inline-block form-select form-select-sm" name="category">
                                 <option value="10" selected="">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
-                            </select><label class="form-label">Veriety</label><select class="form-select">
-                                <optgroup label="This is a group">
-                                    <option value="12" selected="">This is item 1</option>
-                                    <option value="13">This is item 2</option>
-                                    <option value="14">This is item 3</option>
-                                </optgroup>
-                            </select><label class="form-label">Quantity</label><input class="form-control" type="number"><label class="form-label">Regular Price</label><input class="form-control" type="text"><label class="form-label">Sales Price</label><input class="form-control" type="text">
-                            <div class="btn-group" role="group"><input class="btn btn-primary" type="submit"><input class="btn btn-primary" type="submit" style="background: var(--bs-teal);"></div>
+             
+                            </select><label class="form-label">Quantity</label><input class="form-control" type="number" name="quantity"><label class="form-label">Regular Price</label><input class="form-control" type="text" name="regularprice"><label class="form-label">Sales Price</label><input class="form-control" type="text" name="salesprice">
+                            @error('name')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
+                            <input class="btn btn-primary" type="submit">
                         </form>
                     </div>
                     <div style="padding: 30px;border-style: solid;">
@@ -349,147 +351,7 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="text-dark mb-4">Team</h3>
-                    <div class="card shadow">
-                        <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Employee Info</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length-2" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label></div>
-                                </div>
-                                <div class="col-md-6"></div>
-                            </div>
-                            <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar1.jpeg">Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar2.jpeg">Angelica Ramos</td>
-                                            <td>Chief Executive Officer(CEO)</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                            <td>2009/10/09<br></td>
-                                            <td>$1,200,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar3.jpeg">Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12<br></td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar4.jpeg">Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13<br></td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar5.jpeg">Brenden Wagner</td>
-                                            <td>Software Engineer</td>
-                                            <td>San Francisco</td>
-                                            <td>28</td>
-                                            <td>2011/06/07<br></td>
-                                            <td>$206,850</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar1.jpeg">Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02<br></td>
-                                            <td>$372,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar2.jpeg">Bruno Nash<br></td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>38</td>
-                                            <td>2011/05/03<br></td>
-                                            <td>$163,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar3.jpeg">Caesar Vance</td>
-                                            <td>Pre-Sales Support</td>
-                                            <td>New York</td>
-                                            <td>21</td>
-                                            <td>2011/12/12<br></td>
-                                            <td>$106,450</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar4.jpeg">Cara Stevens</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                            <td>2011/12/06<br></td>
-                                            <td>$145,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td><img class="rounded-circle me-2" width="30" height="30" src="assets/img/avatars/avatar5.jpeg">Cedric Kelly</td>
-                                            <td>Senior JavaScript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29<br></td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td><strong>Name</strong></td>
-                                            <td><strong>Position</strong></td>
-                                            <td><strong>Office</strong></td>
-                                            <td><strong>Age</strong></td>
-                                            <td><strong>Start date</strong></td>
-                                            <td><strong>Salary</strong></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 align-self-center">
-                                    <p id="dataTable_info-1" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
