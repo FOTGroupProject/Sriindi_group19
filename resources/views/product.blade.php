@@ -225,14 +225,27 @@
                         </form>
                     </div>
                     <div style="padding: 30px;border-style: solid;">
+                    @if(session('success'))
+                    <script>
+                   alert("{{ session('success') }}");
+                    </script>
+                    @endif
                         <form method="get" action="/addblacklist">
-                            <h3 class="text-dark mb-4">Black List</h3><label class="form-label">ID</label><input class="form-control" type="text"name="product_id">
+                        @csrf
+                            <h3 class="text-dark mb-4">Black List</h3><label class="form-label">ID</label><input class="form-control" type="text"name="product_id" value="{{ old('name') }}">
+                            @error('product_id')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                             <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Backlist">
                         </form>
                     </div>
                     <div style="border-style: solid;border-color: var(--bs-red);">
-                        <form>
-                            <h3 class="text-dark mb-4">Category</h3><label class="form-label">ADD</label><input class="form-control" type="text">
+                        <form method="get" action="/addcategory">
+                        @csrf
+                            <h3 class="text-dark mb-4">Category</h3><label class="form-label">ADD</label><input class="form-control" type="text" name="category">
+                            @error('category')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                             <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Category">
                         </form>
                     </div>
@@ -249,13 +262,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>cat01</td>
-                                            <td>ring</td>
-                                            <td><button class="btn btn-primary" type="button" style="background: var(--bs-green);">Update</button><button class="btn btn-primary" type="button" style="background: var(--bs-danger);">Delete</button></td>
-                                        </tr>
-                                        <tr></tr>
-                                    </tbody>
+        @foreach($categories as $category)
+        <tr>
+            <td>{{ $category->category_id }}</td>
+            <td>{{ $category->category}}</td>
+            <td>
+                <!-- Update Button -->
+                <button class="btn btn-primary" type="button" style="background: var(--bs-green);">Update</button>
+                
+                <!-- Delete Button -->
+                <form action="/jk" method="get" style="display: inline;">
+                    
+                    
+                    <button type="submit" class="btn btn-primary" style="background: var(--bs-danger);" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
                                 </table>
                             </div>
                             <div style="height: 12px;"></div>
