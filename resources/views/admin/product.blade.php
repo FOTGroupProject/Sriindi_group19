@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html data-bs-theme="light">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -10,7 +9,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
 </head>
-
 <body id="page-top">
     <div id="wrapper">
         <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
@@ -20,14 +18,14 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                <li class="nav-item"><a class="nav-link " href="index"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="product"><i class="fas fa-table"></i><span>Product</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-table"></i><span>Orders</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-table"></i><span>Customers</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="login"><i class="far fa-user-circle"></i><span>Login</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-user-circle"></i><span>Register</span></a><a class="nav-link" href="blank.html"><i class="fas fa-window-maximize"></i><span>Suppliers</span></a><a class="nav-link" href="register.html" style="background: var(--bs-danger);"><i class="fas fa-user-circle"></i><span>Logout</span></a></li>
-                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-table"></i><span>Orders</span></a></li>     
+                    <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-table"></i><span>Customers</span></a></li>                  
+                    <li class="nav-item"><a class="nav-link" href="blank.html"><i class="fas fa-window-maximize"></i><span>Suppliers</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="pro"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="logout" style="background: var(--bs-danger);"><i class="fas fa-user-circle"></i><span>Logout</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -36,21 +34,15 @@
             <div id="content">
                 <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                        </form>
+                      
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="me-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                                        </div>
-                                    </form>
+                                 
                                 </div>
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">0</span><i class="fas fa-bell fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
                                         <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="me-3">
@@ -119,7 +111,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Admin yohan</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
@@ -129,7 +121,158 @@
                     </div>
                 </nav>
                 <div class="container-fluid" style="border: 2.5px none var(--bs-black);padding: 0px;">
-                    <div>
+                   
+                    </div>
+                    <div style="border-style: solid;margin: 0px;padding: 20px;">
+                        <h3 class="text-dark mb-4">Add New Product</h3>
+                        <form method="get" action="/addproduct">
+                            <label class="form-label">Name</label><input class="form-control" type="text" name="name" required>
+                            <label class="form-label">Short Description</label><input class="form-control" type="text" name="sdescription" required>
+                            <label class="form-label">Image</label><input class="form-control" type="file" name="image">
+                            <label class="form-label">SKU</label><input class="form-control" type="text" name="sku"required>
+                            <label class="form-label">Category</label><select class="form-select d-inline-block form-select form-select-sm" name="category">
+                                <option value="10" selected="">ring</option>
+                                <option value="25">earring</option>
+                                <option value="50">neckas</option>
+                                </select>
+                            <label class="form-label">Quantity</label><input class="form-control" type="number" name="quantity"required>
+                            <label class="form-label">Regular Price</label><input class="form-control" type="number" name="regularprice"required>
+                            <label class="form-label">Sales Price</label><input class="form-control" type="number" name="salesprice"required>
+                            @error('name')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
+                            <input class="btn btn-primary" type="submit">
+                        </form>
+                    </div>
+                    <div style="padding: 30px;border-style: solid;">
+                    @if(session('success'))
+                    <script>
+                   alert("product added succssfully");
+                    </script>
+                    @endif
+                        <form method="get" action="/addblacklist">
+                        @csrf
+                            <h3 class="text-dark mb-4">Black List</h3><label class="form-label">ID</label><input class="form-control" type="text"name="product_id" value="{{ old('name') }}">
+                            @error('product_id')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
+                            <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Backlist">
+                        </form>
+                    </div>
+                    <div style="border-style: solid;">
+                        <form method="get" action="/addcategory">
+                        @csrf
+                            <h3 class="text-dark mb-4">Category</h3><label class="form-label">ADD</label><input class="form-control" type="text" name="category">
+                            @error('category')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
+                            <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Category">
+                        </form>
+                    </div>
+                    <div style="border-style: solid;">
+                        <form>
+                            <h3 class="text-dark mb-4">Current Category</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Control</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+        @foreach($categories as $category)
+        <tr>
+            <td>{{ $category->category_id }}</td>
+            <td>{{ $category->category}}</td>
+            <td>
+                <!-- Update Button -->
+                <button class="btn btn-primary" type="button" style="background: var(--bs-green);">Update</button>
+                
+                <!-- Delete Button -->
+                <form action="/jk" method="get" style="display: inline;">
+                    
+                    
+                    <button type="submit" class="btn btn-primary" style="background: var(--bs-danger);" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+                                </table>
+                            </div>
+                            <div style="height: 12px;"></div>
+                        </form>
+                    </div>
+                    <div style="border-style: solid;">
+                        <h3 class="text-dark mb-4">Ratings</h3>
+                        <div class="row">
+                            <div class="col-md-6 text-nowrap">
+                                <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
+                                            <option value="10" selected="">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>&nbsp;</label></div>
+                            </div>
+                            <div class="col-md-6 text-end" style="position: static;"><select style="text-align: right;position: relative;">
+                                    <option value="all" selected="">All</option>
+                                    <option value="13">Stock</option>
+                                    <option value="14">Popularity</option>
+                                    <option value="">Black list</option>
+                                </select>
+                                <div class="text-md-end dataTables_filter" id="dataTable_filter-1" style="text-align: right;width: 240.0px;height: 40px;position: relative;display: inline-block;"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label><button class="btn btn-primary" type="button">Go</button></div>
+                            </div>
+                        </div>
+                        <div class="table-responsive" style="position: relative;">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th style="margin-right: 0px;">Product ID</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Avg Rating</th>
+                                        <th>positive review</th>
+                                        <th>negative review</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                      
+                                        <td>ring</td>
+                                        <td><img src="assets/img/ring.jfif" width="50px" height="50px"></td>
+                    
+                                        <td>small</td>
+                                        <td>8</td>
+                                        <td>500</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info-2" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                            </div>
+                            <div class="col-md-6">
+                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div>
                         <h3 class="text-dark mb-4">Products</h3>
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
@@ -171,7 +314,7 @@
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->category }}</td>
-                        <td>{{ $product->image }}</td>
+                        <td><img src="{{ $product->image }}" width="50px" height="50px"></td>
                         <td>{{ $product->sku }}</td>
                         <td>{{ $product->sdescription }}</td>
                         <td>{{ $product->quantity }}</td>
@@ -210,149 +353,6 @@
                                 </nav>
                             </div>
                         </div>
-                    </div>
-                    <div style="border-style: solid;border-color: var(--bs-black);margin: 0px;padding: 20px;">
-                        <h3 class="text-dark mb-4">Add New Product</h3>
-                        <form method="get" action="/addproduct"><label class="form-label">Name</label><input class="form-control" type="text"><label class="form-label"name="sdescription">Short Description</label><input class="form-control" type="text"><label class="form-label">Image</label><input class="form-control" type="file" name="image"><label class="form-label">SKU</label><input class="form-control" type="text" name="sku"><label class="form-label">Category</label><select class="form-select d-inline-block form-select form-select-sm" name="category">
-                                <option value="10" selected="">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-             
-                            </select><label class="form-label">Quantity</label><input class="form-control" type="number" name="quantity"><label class="form-label">Regular Price</label><input class="form-control" type="text" name="regularprice"><label class="form-label">Sales Price</label><input class="form-control" type="text" name="salesprice">
-                            @error('name')
-                            <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                            <input class="btn btn-primary" type="submit">
-                        </form>
-                    </div>
-                    <div style="padding: 30px;border-style: solid;">
-                    @if(session('success'))
-                    <script>
-                   alert("{{ session('success') }}");
-                    </script>
-                    @endif
-                        <form method="get" action="/addblacklist">
-                        @csrf
-                            <h3 class="text-dark mb-4">Black List</h3><label class="form-label">ID</label><input class="form-control" type="text"name="product_id" value="{{ old('name') }}">
-                            @error('product_id')
-                            <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                            <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Backlist">
-                        </form>
-                    </div>
-                    <div style="border-style: solid;border-color: var(--bs-red);">
-                        <form method="get" action="/addcategory">
-                        @csrf
-                            <h3 class="text-dark mb-4">Category</h3><label class="form-label">ADD</label><input class="form-control" type="text" name="category">
-                            @error('category')
-                            <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                            <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Category">
-                        </form>
-                    </div>
-                    <div style="border-style: solid;border-color: var(--bs-purple);">
-                        <form>
-                            <h3 class="text-dark mb-4">Current Category</h3>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Control</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-        @foreach($categories as $category)
-        <tr>
-            <td>{{ $category->category_id }}</td>
-            <td>{{ $category->category}}</td>
-            <td>
-                <!-- Update Button -->
-                <button class="btn btn-primary" type="button" style="background: var(--bs-green);">Update</button>
-                
-                <!-- Delete Button -->
-                <form action="/jk" method="get" style="display: inline;">
-                    
-                    
-                    <button type="submit" class="btn btn-primary" style="background: var(--bs-danger);" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-                                </table>
-                            </div>
-                            <div style="height: 12px;"></div>
-                        </form>
-                    </div>
-                    <div style="border-style: solid;border-color: var(--bs-purple);">
-                        <h3 class="text-dark mb-4">Ratings</h3>
-                        <div class="row">
-                            <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>&nbsp;</label></div>
-                            </div>
-                            <div class="col-md-6 text-end" style="position: static;"><select style="text-align: right;position: relative;">
-                                    <option value="all" selected="">All</option>
-                                    <option value="13">Stock</option>
-                                    <option value="14">Popularity</option>
-                                    <option value="">Black list</option>
-                                </select>
-                                <div class="text-md-end dataTables_filter" id="dataTable_filter-1" style="text-align: right;width: 240.0px;height: 40px;position: relative;display: inline-block;"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label><button class="btn btn-primary" type="button">Go</button></div>
-                            </div>
-                        </div>
-                        <div class="table-responsive" style="position: relative;">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Auther</th>
-                                        <th style="margin-right: 0px;">Product ID</th>
-                                        <th>Name</th>
-                                        <th>Image</th>
-                                        <th>Rating</th>
-                                        <th>Review</th>
-                                        <th>Submit Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>baselet</td>
-                                        <td>baselet</td>
-                                        <td>small</td>
-                                        <td>10</td>
-                                        <td>500</td>
-                                        <td>450</td>
-                                    </tr>
-                                    <tr></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 align-self-center">
-                                <p id="dataTable_info-2" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
-                            </div>
-                            <div class="col-md-6">
-                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">

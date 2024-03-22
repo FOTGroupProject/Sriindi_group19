@@ -9,13 +9,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/o', function () {
+    return view('admin.orders2');
+});
 Route::get('/orders', function () {
-    return view('orders');
+    return view('admin.orders');
+});
+Route::get('/customer', function () {
+    return view('admin.customers');
 });
 
-Route::get('/profile', function () {
-    return view('profile');
+Route::get('/pro', function () {
+    return view('admin.profile');
 });
 Route::get('/customers', function () {
     return view('customers');

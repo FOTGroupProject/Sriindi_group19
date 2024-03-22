@@ -63,13 +63,27 @@ class product extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'sdescription' => 'required|string|max:255',
+            'sku' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'quantity' => 'required|string|max:255',
+            'regularprice' => 'required|string|max:255',
+            'salesprice'=> 'required|string|max:255',
         ]);
-
         // Use the create method to store the validated data
         products::create($validatedData);
 
         return redirect()->back()->with('success', 'blacklist added successfully');
     }
+
+    public function delcate($id)
+    {
+        $cat = category::findOrFail($id);
+        $cat->delete();
+
+        return redirect()->back()->with('success', 'Product deleted successfully');
+    }
+
 }
 
 

@@ -131,7 +131,7 @@
                 </nav>
                 <div class="container-fluid">
                     <h3 class="text-dark mb-1">Add Suppliers</h3>
-                    <form>
+                    <form >
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -200,8 +200,8 @@
     <div class="form-group">
         <label for="active">Active/Inactive:</label>
         <select name="active">
-            <option value="1">Active</option>
-            <option value="0">Inactive</option>
+            <option value="1">1</option>
+            <option value="0">0</option>
         </select>
     </div>
     
