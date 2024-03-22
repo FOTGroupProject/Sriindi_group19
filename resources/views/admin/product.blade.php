@@ -28,6 +28,7 @@
                     <li class="nav-item"><a class="nav-link" href="login"><i class="far fa-user-circle"></i><span>Login</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-user-circle"></i><span>Register</span></a><a class="nav-link" href="blank.html"><i class="fas fa-window-maximize"></i><span>Suppliers</span></a><a class="nav-link" href="register.html" style="background: var(--bs-danger);"><i class="fas fa-user-circle"></i><span>Logout</span></a></li>
                     <li class="nav-item"></li>
+
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -51,6 +52,7 @@
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
+
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
                                         <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="me-3">
@@ -120,6 +122,7 @@
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
@@ -222,12 +225,14 @@
                                 </optgroup>
                             </select><label class="form-label">Quantity</label><input class="form-control" type="number"><label class="form-label">Regular Price</label><input class="form-control" type="text"><label class="form-label">Sales Price</label><input class="form-control" type="text">
                             <div class="btn-group" role="group"><input class="btn btn-primary" type="submit"><input class="btn btn-primary" type="submit" style="background: var(--bs-teal);"></div>
+
                         </form>
                     </div>
                     <div style="padding: 30px;border-style: solid;">
                     @if(session('success'))
                     <script>
                    alert("{{ session('success') }}");
+
                     </script>
                     @endif
                         <form method="get" action="/addblacklist">
@@ -240,6 +245,7 @@
                         </form>
                     </div>
                     <div style="border-style: solid;border-color: var(--bs-red);">
+
                         <form method="get" action="/addcategory">
                         @csrf
                             <h3 class="text-dark mb-4">Category</h3><label class="form-label">ADD</label><input class="form-control" type="text" name="category">
@@ -250,6 +256,7 @@
                         </form>
                     </div>
                     <div style="border-style: solid;border-color: var(--bs-purple);">
+
                         <form>
                             <h3 class="text-dark mb-4">Current Category</h3>
                             <div class="table-responsive">
@@ -286,6 +293,7 @@
                         </form>
                     </div>
                     <div style="border-style: solid;border-color: var(--bs-purple);">
+
                         <h3 class="text-dark mb-4">Ratings</h3>
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
@@ -316,6 +324,7 @@
                                         <th>Rating</th>
                                         <th>Review</th>
                                         <th>Submit Date</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -327,6 +336,7 @@
                                         <td>10</td>
                                         <td>500</td>
                                         <td>450</td>
+
                                     </tr>
                                     <tr></tr>
                                 </tbody>
@@ -351,6 +361,7 @@
                     </div>
                     
                 </div>
+
             </div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
