@@ -12,6 +12,7 @@ class products extends Model
     protected $fillable = 
     ['category', 
     'name',
+
     'sdescription',
     'image',
     'sku',
@@ -19,4 +20,6 @@ class products extends Model
     'description',
     'quantity',
     'regularprice'];
+
+
 }

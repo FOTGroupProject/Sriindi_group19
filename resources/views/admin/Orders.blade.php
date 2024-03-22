@@ -39,6 +39,7 @@
                         <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
                         </form>
+
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
@@ -51,6 +52,7 @@
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
+
                                     <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
                                         <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="me-3">
@@ -120,6 +122,7 @@
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
                                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+
                                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
@@ -158,6 +161,7 @@
                                         <th>Status</th>
                                         <th>Total</th>
                                         <th>Origin</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -167,6 +171,7 @@
                                         <td>baselet</td>
                                         <td>small</td>
                                         <td>10</td>
+
                                     </tr>
                                     <tr></tr>
                                 </tbody>
@@ -210,12 +215,14 @@
                             <div class="col" style="padding: 0px;">
                                 <h1 style="font-size: 20px;margin: 0;height: 25px;text-align: left;"><strong><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);">Shipping</span></strong><br><br><br><br></h1>
                                 <p><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">yoko moko</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">No.280,Atulgama Road,Ankelipitiya ,Thalatuoya</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">kandy</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">20200</span><br><strong><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Phone:</span></strong><a href="tel:0703145633"><span style="color: rgb(34, 113, 177); background-color: rgb(255, 255, 255);">0703145633</span></a><br><br><br></p>
+
                             </div>
                         </div>
                         <div class="row" style="height: 300px;width: 33%;margin: 0px;">
                             <div class="col">
                                 <h1 style="font-size: 20px;margin: 0;height: 25px;"><strong><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);">Billing</span></strong><br><br><br><br></h1>
                                 <p><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">yoko moko</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">No.280,Atulgama Road,Ankelipitiya ,Thalatuoya</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">kandy</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">20200</span><br><strong><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Emailaddress:</span></strong><a href="mailto:yohanvisuio@gmail.com"><span style="color: rgb(34, 113, 177); background-color: rgb(255, 255, 255);">yohanvisuio@gmail.com</span></a><br><strong><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Phone:</span></strong><a href="tel:0703145633"><span style="color: rgb(34, 113, 177); background-color: rgb(255, 255, 255);">0703145633</span></a><br><br></p>
+
                             </div>
                         </div>
                     </div>
@@ -232,6 +239,7 @@
                             <tbody>
                                 <tr>
                                     <td>sake</td>
+
                                     <td>3</td>
                                     <td>500</td>
                                     <td>1500</td>
@@ -342,6 +350,7 @@
                             <div class="col-md-6 align-self-center">
                                 <p id="dataTable_info-2" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
                             </div>
+
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                     <ul class="pagination">
@@ -498,6 +507,7 @@
                     </div>
                 </div>
             </div>
+
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Copyright © sriindi 2024</span></div>

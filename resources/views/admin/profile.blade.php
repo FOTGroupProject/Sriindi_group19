@@ -198,6 +198,7 @@
                             </div>
                             <div class="row">
                                 <div class="col">
+
                                     <div class="card shadow mb-3">
                                         <div class="card-header py-3">
                                             <p class="text-primary m-0 fw-bold">User Settings</p>
@@ -265,6 +266,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <footer class="bg-white sticky-footer">

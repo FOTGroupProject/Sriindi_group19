@@ -132,6 +132,7 @@
                 <div class="container-fluid">
                     <h3 class="text-dark mb-1">Add Suppliers</h3>
                     <form>
+
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -144,6 +145,7 @@
                                         <th>Tax ID</th>
                                         <th>Active/Inactive</th>
                                         <th>Date added</th>
+
                                         <th>function</th>
                                     </tr>
                                 </thead>
@@ -160,12 +162,14 @@
                                         <td>Cell 2</td>
                                     </tr>
                                     <tr></tr>
+
                                 </tbody>
                             </table>
                         </div>
                     </form>
                 </div>
             </div>
+
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Copyright © sriindi 2024</span></div>
