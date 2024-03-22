@@ -4,19 +4,28 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\product;
-use App\Http\Controllers\suppliercontroller;
+use Illuminate\Support\Facades\Auth;
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/o', function () {
-    return view('admin.orders2');
+Route::get('/index', function () {
+    return view('admin.index');
+
 });
 Route::get('/orders', function () {
     return view('admin.orders');
 });
-Route::get('/customer', function () {
-    return view('admin.customers');
+Route::get('/product', function () {
+    return view('admin/product');
+
 });
 
 Route::get('/pro', function () {
@@ -27,17 +36,10 @@ Route::get('/customers', function () {
 });
 Route::get('/addblacklist', [product::class, 'store'])->name('addtoblacklist');
 Route::get('/addcategory', [product::class, 'catstore'])->name('addcategories');
-Route::get('/product', [product::class, 'viewproduct'])->name('product');
+Route::get('/product', [product::class, 'viewcat'])->name('product');
 Route::get('/delcategory', [product::class, 'delcat'])->name('delcategory');
-Route::get('/index', [product::class, 'viewdashboard'])->name('productcount');
-Route::get('/addproduct', [product::class, 'productstore'])->name('productstr');
-Route::get('/viewsupplier', [suppliercontroller::class, 'viewsupplier'])->name('viewsupplier');
+Route::get('/index', [product::class, 'procount'])->name('productcount');
 
-//suplier section
-Route::get('/updatesupplier', [suppliercontroller::class, ''])->name('supplier.update');
-
-Route::get('/destroysupplier/{id}', [suppliercontroller::class, 'deletesupplier'])->name('supplier.destroy');
-Route::get('/addsupplier', [suppliercontroller::class, 'addsupplier'])->name('supplier.add');
 
 
 

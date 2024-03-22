@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\blacklist;
 use App\Models\category;
 use App\Models\products;
+
 use App\Models\User;
 use App\Models\payment; 
 class product extends Controller
@@ -35,6 +36,13 @@ class product extends Controller
 
         return redirect()->back()->with('success', 'category added successfully');
     }
+    public function viewcat()
+    {
+        $categories = category::all(); // Fetch all products from the database
+
+        return view('/admin/product', ['categories' => $categories]);
+    }
+
     public function delcat($id)
     {
         $cat = category::findOrFail($id);
@@ -42,6 +50,10 @@ class product extends Controller
 
         return redirect()->back()->with('success', 'Product deleted successfully');
     }
+    public function procount()
+    {
+        $productcount = products::count(); // Fetch the row count from the products table
+        return view('/admin/index', ['productcount' => $productcount]);
     public function viewdashboard()
     {
         $productcount = products::count(); // Fetch the row count from the products table
