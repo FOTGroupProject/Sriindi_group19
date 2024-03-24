@@ -25,27 +25,24 @@ Route::get('/pro', function () {
 Route::get('/customers', function () {
     return view('customers');
 });
+//dashboard
+Route::get('/index', [product::class, 'viewdashboard'])->name('productcount');
+
+//product section
 Route::get('/addblacklist', [product::class, 'store'])->name('addtoblacklist');
 Route::get('/addcategory', [product::class, 'catstore'])->name('addcategories');
 Route::get('/product', [product::class, 'viewproduct'])->name('product');
 Route::get('/delcategory', [product::class, 'delcat'])->name('delcategory');
-Route::get('/index', [product::class, 'viewdashboard'])->name('productcount');
 Route::get('/addproduct', [product::class, 'productstore'])->name('productstr');
-Route::get('/viewsupplier', [suppliercontroller::class, 'viewsupplier'])->name('viewsupplier');
 
 //suplier section
+Route::get('/viewsupplier', [suppliercontroller::class, 'viewsupplier'])->name('viewsupplier');
+Route::get('/editsupplier', [suppliercontroller::class, 'editsupplier'])->name('supplier.edit');
 Route::get('/updatesupplier', [suppliercontroller::class, ''])->name('supplier.update');
-
 Route::get('/destroysupplier/{id}', [suppliercontroller::class, 'deletesupplier'])->name('supplier.destroy');
 Route::get('/addsupplier', [suppliercontroller::class, 'addsupplier'])->name('supplier.add');
 
-
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//auth section
 Route::get('/dashboard', function () {
     return view('redirect');
 })->middleware(['auth', 'verified'])->name('dashboard');
