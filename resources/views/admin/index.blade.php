@@ -15,15 +15,15 @@
     <div id="wrapper">
         <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="background: var(--bs-link-hover-color);width: 100%;">
-                    <div class="sidebar-brand-icon rotate-n-15"><img style="background: url(&quot;assets/img/sriindi%20(1)_240131_232354-1.png&quot;);transform: rotate(15deg);" src="assets/img/sriindi%20(1)_240131_232354-1.png" width="70" height="70"></div>
+                    <div class="sidebar-brand-icon rotate-n-15"><img style="background: url(&quot;assets/img/sriindi%20(1)_240131_232354-1.png&quot;);transform: rotate(15deg);" src="assets/img/logo.png" width="70" height="70"></div>
                     <div class="sidebar-brand-text mx-3"><span class="text-lowercase" style="font-family: ABeeZee, sans-serif;">Sriindi</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link active" href="index"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="product"><i class="fas fa-table"></i><span>Product</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-table"></i><span>Orders</span></a></li>     
-                    <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-table"></i><span>Customers</span></a></li>                  
+                    <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-table"></i><span>Orders</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-table"></i><span>Customers</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="viewsupplier"><i class="fas fa-window-maximize"></i><span>Suppliers</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="pro"><i class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
@@ -36,7 +36,7 @@
             <div id="content">
                 <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                      
+
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
@@ -59,12 +59,12 @@
                                             <div class="me-3">
                                                 <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
                                             </div>
-                                           
+
                                         </a><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="me-3">
                                                 <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
                                             </div>
-                                            
+
                                         </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                     </div>
                                 </div>
@@ -76,22 +76,22 @@
                                             <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
-                                            
+
                                         </a><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar2.jpeg">
                                                 <div class="status-indicator"></div>
                                             </div>
-                                            
+
                                         </a><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar3.jpeg">
                                                 <div class="bg-warning status-indicator"></div>
                                             </div>
-                                            
+
                                         </a><a class="dropdown-item d-flex align-items-center" href="#">
                                             <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar5.jpeg">
                                                 <div class="bg-success status-indicator"></div>
                                             </div>
-                                           
+
                                         </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
 
 
 
-                
+
                 <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
                         <h3 class="text-dark mb-0">Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
@@ -177,7 +177,7 @@
                                                     <div class="text-dark fw-bold h5 mb-0 me-3"><span>{{$totalusers}}</span></div>
                                                 </div>
                                                 <div class="col">
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -235,7 +235,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
             </div>
             <footer class="bg-white sticky-footer">

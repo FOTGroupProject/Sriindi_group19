@@ -8,7 +8,7 @@ use App\Models\category;
 use App\Models\products;
 use App\Models\User;
 use App\Models\payment; 
-class product extends Controller
+class productController extends Controller
 {
     public function store(Request $request)
     {
@@ -35,11 +35,11 @@ class product extends Controller
 
         return redirect()->back()->with('success', 'category added successfully');
     }
-    public function delcat($id)
+    public function deletecategory($category_id)
     {
-        $cat = category::findOrFail($id);
-        $cat->delete();
-
+      //  $cat = category::findOrFail($category_id);
+      //  $cat->delete();
+            category::destroy($category_id);
         return redirect()->back()->with('success', 'Product deleted successfully');
     }
     public function viewdashboard()
@@ -76,13 +76,7 @@ class product extends Controller
         return redirect()->back()->with('success', 'blacklist added successfully');
     }
 
-    public function delcate($id)
-    {
-        $cat = category::findOrFail($id);
-        $cat->delete();
-
-        return redirect()->back()->with('success', 'Product deleted successfully');
-    }
+ 
 
 }
 

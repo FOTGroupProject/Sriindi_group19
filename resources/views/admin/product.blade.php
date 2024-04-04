@@ -13,15 +13,15 @@
     <div id="wrapper">
         <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="background: var(--bs-link-hover-color);width: 100%;">
-                    <div class="sidebar-brand-icon rotate-n-15"><img style="background: url(&quot;assets/img/sriindi%20(1)_240131_232354-1.png&quot;);transform: rotate(15deg);" src="assets/img/sriindi%20(1)_240131_232354-1.png" width="70" height="70"></div>
+                    <div class="sidebar-brand-icon rotate-n-15"><img style="transform: rotate(15deg);" src="assets/img/logo.png" width="70" height="70"></div>
                     <div class="sidebar-brand-text mx-3"><span class="text-lowercase" style="font-family: ABeeZee, sans-serif;">Sriindi</span></div>
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item"><a class="nav-link " href="index"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="product"><i class="fas fa-table"></i><span>Product</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-table"></i><span>Orders</span></a></li>     
-                    <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-table"></i><span>Customers</span></a></li>                  
+                    <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-table"></i><span>Orders</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-table"></i><span>Customers</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="blank.html"><i class="fas fa-window-maximize"></i><span>Suppliers</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="pro"><i class="fas fa-user"></i><span>Profile</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
@@ -30,16 +30,16 @@
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
-        
+
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                      
+
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
                                 <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                 
+
                                 </div>
                             </li>
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -122,7 +122,7 @@
                     </div>
                 </nav>
                 <div class="container-fluid" style="border: 2.5px none var(--bs-black);padding: 0px;">
-                   
+
                     </div>
                     <div style="border-style: solid;margin: 0px;padding: 20px;">
                         <h3 class="text-dark mb-4">Add New Product</h3>
@@ -132,9 +132,10 @@
                             <label class="form-label">Image</label><input class="form-control" type="file" name="image">
                             <label class="form-label">SKU</label><input class="form-control" type="text" name="sku"required>
                             <label class="form-label">Category</label><select class="form-select d-inline-block form-select form-select-sm" name="category">
-                                <option value="10" selected="">ring</option>
-                                <option value="25">earring</option>
-                                <option value="50">neckas</option>
+                                @foreach($categories as $category){
+                            <option value="{{ $category->category }}">{{ $category->category }}</option>
+                                }
+                                @endforeach
                                 </select>
                             <label class="form-label">Quantity</label><input class="form-control" type="number" name="quantity"required>
                             <label class="form-label">Regular Price</label><input class="form-control" type="number" name="regularprice"required>
@@ -185,17 +186,22 @@
                                     <tbody>
         @foreach($categories as $category)
         <tr>
-            <td>{{ $category->category_id }}</td>
+            <td>{{ $category->id }}</td>
             <td>{{ $category->category}}</td>
             <td>
                 <!-- Update Button -->
                 <button class="btn btn-primary" type="button" style="background: var(--bs-green);">Update</button>
-                
+
                 <!-- Delete Button -->
-                <form action="/jk" method="get" style="display: inline;">
-                    
-                    
+                <form action="deletecategory/{{ $category->id }}" method="get" style="display: inline;">
+
+
                     <button type="submit" class="btn btn-primary" style="background: var(--bs-danger);" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                    @if(session('success'))
+                        <script>
+                            alert({{$message}});
+                        </script>
+                    @endif
                 </form>
             </td>
         </tr>
@@ -230,7 +236,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        
+
                                         <th style="margin-right: 0px;">Product ID</th>
                                         <th>Name</th>
                                         <th>Image</th>
@@ -241,10 +247,10 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                      
+
                                         <td>ring</td>
                                         <td><img src="assets/img/ring.jfif" width="50px" height="50px"></td>
-                    
+
                                         <td>small</td>
                                         <td>8</td>
                                         <td>500</td>
@@ -271,7 +277,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div>
                         <h3 class="text-dark mb-4">Products</h3>
