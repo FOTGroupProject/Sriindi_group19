@@ -13,7 +13,7 @@
 
 
                 <div style="border-style: solid;">
-                    <h3 class="text-dark mb-4">Ratings</h3>
+                    <h3 class="text-dark mb-4">Black List</h3>
                     <div class="row">
                         <div class="col-md-6 text-nowrap">
                             <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
@@ -36,14 +36,10 @@
                         <table class="table">
                             <thead>
                             <tr>
-
                                 <th style="margin-right: 0px;">Product ID</th>
                                 <th>Name</th>
                                 <th>Image</th>
                                 <th>size</th>
-                                <th>Avg Rating</th>
-                                <th>positive review</th>
-                                <th>negative review</th>
                                 <th>Function</th>
                             </tr>
                             </thead>
@@ -55,12 +51,10 @@
 
                                 <td>small</td>
                                 <td>8</td>
-                                <td>500</td>
-                                <td>10</td>
 
-                                <td>small</td>
 
-                                <td><input type="submit" class="btn btn-danger" value="Add to Blacklist"> </td>
+
+                                <td><input type="submit" class="btn btn-primary" value="Remove from Blacklist"> </td>
                             </tr>
                             <tr></tr>
                             </tbody>

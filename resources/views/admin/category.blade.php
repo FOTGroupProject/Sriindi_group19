@@ -11,37 +11,62 @@
              @include('layouts.nav')
                 {{--        end of nav item--}}
 
-                <div class="container-fluid" style="border: 2.5px none var(--bs-black);padding: 0px;">
-                </div>
+
                 <div style="border-style: solid;margin: 0px;padding: 20px;">
-                    <h3 class="text-dark mb-4">Add New Product</h3>
-                    <form method="get" action="/addproduct">
-                        <label class="form-label">Name</label><input class="form-control" type="text" name="name" required>
-                        <label class="form-label">Short Description</label><textarea class="form-control" rows="4" cols="10" name="sdescription" required placeholder="max 200 character"></textarea>
-                        <label class="form-label">Image</label><input class="form-control" type="file" name="image">
-                        <label class="form-label">SKU</label><input class="form-control" type="text" name="sku"required>
-                        <label class="form-label">Category</label><select class="form-select d-inline-block form-select form-select-sm" name="category">
-                            @foreach($categories as $category){
-                            <option value="{{ $category->category }}">{{ $category->category }}</option>
-                            }
-                            @endforeach
-                        </select>
-                        <label class="form-label">Quantity</label><input class="form-control" type="number" name="quantity"required>
-                        <label class="form-label">Regular Price</label><input class="form-control" type="number" step="0.01" name="regularprice"required>
-                        <label class="form-label">Sales Price</label><input class="form-control" type="number" step="0.01" name="salesprice"required>
-                        @error('name')
-                        <div class="text-red-500">{{ $message }}</div>
-                        @enderror
-                        <input class="btn btn-primary" type="submit">
-                    </form>
-                </div>
-                <div>
-                    @if(session('success'))
-                        <script>
-                            alert("product added succssfully");
-                        </script>
-                    @endif
-            </div>
+
+                        <form method="get" action="/addcategory">
+                            @csrf
+                            <h3 class="text-dark mb-4">Category</h3><label class="form-label">ADD</label><input class="form-control" type="text" name="category">
+                            @error('category')
+                            <div class="text-red-500">{{ $message }}</div>
+                            @enderror
+                            <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Category">
+                        </form>
+                    </div>
+                    <div style="border-style: solid;">
+                        <form>
+                            <h3 class="text-dark mb-4">Current Category</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Control</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($categories as $category)
+                                        <tr>
+                                            <td>{{ $category->id }}</td>
+                                            <td>{{ $category->category}}</td>
+                                            <td>
+                                                <!-- Update Button -->
+                                                <button class="btn btn-primary" type="button" style="background: var(--bs-green);">Update</button>
+
+                                                <!-- Delete Button -->
+                                                <form action="deletecategory/{{ $category->id }}" method="get" style="display: inline;">
+
+
+                                                    <button type="submit" class="btn btn-primary" style="background: var(--bs-danger);" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                                    {{--                    @if(session('success'))--}}
+                                                    {{--                        <script>--}}
+                                                    {{--                            alert({{$message}});--}}
+                                                    {{--                        </script>--}}
+                                                    {{--                    @endif--}}
+
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="height: 12px;"></div>
+                        </form>
+                    </div>
+
+
             @include('layouts.footer')
         </div>
     </div>

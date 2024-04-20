@@ -2,13 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\suppliercontroller;
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/send-welcome-email', [EmailController::class, 'sendWelcomeEmail']);
 Route::get('/o', function () {
     return view('admin.orders2');
 });
@@ -25,15 +27,28 @@ Route::get('/pro', function () {
 Route::get('/customers', function () {
     return view('customers');
 });
+Route::get('/registers', function () {
+    return view('admin/register');
+});
 //dashboard
 Route::get('/index', [productController::class, 'viewdashboard'])->name('productcount');
+Route::get('/category', [productController::class, 'categorysendtocategorypage'])->name('viewcategori');
+Route::get('/addproductpage', [productController::class, 'categorysendtoproductpage'])->name('addtoblacklist');
 
 //product section
+
+
+Route::get('/blacklist', [productController::class, 'blacklist'])->name('blacklist');
+Route::get('/ratings', [productController::class, 'ratingpageview'])->name('ratingview');
 Route::get('/addblacklist', [productController::class, 'store'])->name('addtoblacklist');
 Route::get('/addcategory', [productController::class, 'catstore'])->name('addcategories');
 Route::get('/product', [productController::class, 'viewproduct'])->name('product');
 Route::get('/deletecategory/{category_id}', [productController::class, 'deletecategory'])->name('delcategory');
 Route::get('/addproduct', [productController::class, 'productstore'])->name('productstr');
+Route::get('/updateproduct', function () {
+    return view('admin.updateproduct');
+});
+
 
 //suplier section
 Route::get('/viewsupplier', [suppliercontroller::class, 'viewsupplier'])->name('viewsupplier');
