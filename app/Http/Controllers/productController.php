@@ -8,6 +8,7 @@ use App\Models\category;
 use App\Models\products;
 use App\Models\User;
 use App\Models\payment;
+use App\Models\orders;
 class productController extends Controller
 {
     public function store(Request $request)
@@ -23,20 +24,34 @@ class productController extends Controller
         return redirect()->back()->with('success', 'blacklist added successfully');
     }
 
+    public function updatecategory(Request $request, $category_id)
+    {
+        $category=category::find($category_id);
+        $category->category=$request->category;
+        $category->save();
+        return redirect()->back()->with('success', 'category updated successfully');
+    }
+    
+    public function vieworders()
+    {
+        $orders = orders::all(); // Fetch the row count from the products table
+     
+        return view('/admin/orders',compact('orders'));
+    }
     public function catstore(Request $request)
     {
         $validatedData = $request->validate([
             'category' => 'required|string|max:255|unique:categories,category',
         ]);
         category::create($validatedData);
-        return redirect()->back()->with('success', 'category added successfully');
+        return redirect()->back()->with('success2', 'category added successfully');
     }
     public function deletecategory($category_id)
     {
       //  $cat = category::findOrFail($category_id);
       //  $cat->delete();
             category::destroy($category_id);
-        return redirect()->back()->with('success', 'Product deleted successfully');
+        return redirect()->back()->with('success', 'Category deleted successfully');
     }
     public function ratingpageview()
     {

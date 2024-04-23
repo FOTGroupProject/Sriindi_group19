@@ -14,6 +14,17 @@
 
                 <div style="border-style: solid;">
                     <h3 class="text-dark mb-4">Black List</h3>
+                   
+
+<form method="post" action="/addblacklist">
+    @csrf
+   <label class="form-label">ID</label><input class="form-control" type="text"name="product_id" value="{{ old('name') }}">
+    @error('product_id')
+    <div class="text-red-500">{{ $message }}</div>
+    @enderror
+    <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Backlist">
+</form>
+<br>
                     <div class="row">
                         <div class="col-md-6 text-nowrap">
                             <div id="dataTable_length-1" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\suppliercontroller;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -14,9 +16,7 @@ Route::get('/send-welcome-email', [EmailController::class, 'sendWelcomeEmail']);
 Route::get('/o', function () {
     return view('admin.orders2');
 });
-Route::get('/orders', function () {
-    return view('admin.orders');
-});
+
 Route::get('/customer', function () {
     return view('admin.customers');
 });
@@ -37,7 +37,8 @@ Route::get('/addproductpage', [productController::class, 'categorysendtoproductp
 
 //product section
 
-
+Route::get('/orders', [productController::class, 'vieworders'])->name('orders');
+Route::get('/updatecategory/{category_id }', [productController::class, 'updatecategory'])->name('upcategory');
 Route::get('/blacklist', [productController::class, 'blacklist'])->name('blacklist');
 Route::get('/ratings', [productController::class, 'ratingpageview'])->name('ratingview');
 Route::get('/addblacklist', [productController::class, 'store'])->name('addtoblacklist');

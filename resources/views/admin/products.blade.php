@@ -9,17 +9,7 @@
             {{--                //nav goes here--}}
             @include('layouts.nav')
             {{--        end of nav item--}}
-            <div style="border-style: solid;margin: 0px;padding: 20px;">
-
-                        <form method="post" action="/addblacklist">
-                            @csrf
-                            <h3 class="text-dark mb-4">Black List</h3><label class="form-label">ID</label><input class="form-control" type="text"name="product_id" value="{{ old('name') }}">
-                            @error('product_id')
-                            <div class="text-red-500">{{ $message }}</div>
-                            @enderror
-                            <div style="height: 12px;"></div><input class="btn btn-primary" type="submit" style="margin: 0px;padding: 5px 5px;height: 35px;"value="Add to Backlist">
-                        </form>
-                    </div>
+          
 
 
 
