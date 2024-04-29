@@ -36,7 +36,6 @@
                                         <th>Date</th>
                                         <th>Status</th>
                                         <th>Total</th>
-                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,7 +68,7 @@
                         </div>
                         <!-- model start -->
                         <div class="modal fade" id="m{{$order->order_id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        @endforeach   
+               
                         <div class="modal-dialog modal-dialog-centered modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -81,19 +80,21 @@
                                         <div class="row" style="">
                                             <div class="col">
                                                 <h1 style="font-size: 20px;margin: 0;height: 25px;width: 200.9px;"><strong><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);">General</span></strong><br><br></h1>
-                                                <p><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Payment via Cash on delivery. Customer IP:&nbsp;::1</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Date created:2023.12.12 @ ‎02:35&nbsp;</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Status:</span><span style="color: rgb(44, 51, 56); background-color: rgb(255, 255, 255);">&nbsp; </span>
+                                                <p><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Payment via {{$order->payment_method}}</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Date created:{{$order->date_}} @ ‎02:35&nbsp;</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Status:</span><span style="color: rgb(44, 51, 56); background-color: rgb(255, 255, 255);">&nbsp; </span>
                                                 <form action="/updatecategory/6" method="get">
-                                                    <select>                                             
-                                                    <optgroup label="This is a group">
-                                                            <option value="12" selected="">Pending payment</option>
-                                                            <option value="13">Processing</option>
-                                                            <option value="14">Completed</option>
-                                                            <option value="Cancelled">Cancelled</option>
-                                                            <option value="Onhold">On hold</option>
-                                                            <option value="Refunded">Refunded</option>
-                                                            <option value="Failed">Failed</option>
-                                                    </optgroup>
-                                                    </select>
+                                                <select name="status" id="status">
+    <optgroup label="This is a group">
+        <option value="12" {{ $order->status == 'Pending payment' ? 'selected' : '' }}>Pending payment</option>
+        <option value="13" {{ $order->status == 'Processing' ? 'selected' : '' }}>Processing</option>
+        <option value="14" {{ $order->status == 'Completed' ? 'selected' : '' }}>Completed</option>
+        <option value="Cancelled" {{ $order->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+        <option value="Onhold" {{ $order->status == 'On hold' ? 'selected' : '' }}>On hold</option>
+        <option value="Refunded" {{ $order->status == 'Refunded' ? 'selected' : '' }}>Refunded</option>
+        <option value="Failed" {{ $order->status == 'Failed' ? 'selected' : '' }}>Failed</option>
+    </optgroup>
+</select>
+
+                                                    @endforeach  
                                                     <br>
                                                     <span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Customer:</span><span style="color: rgb(44, 51, 56); background-color: rgb(255, 255, 255);">&nbsp;</span><br><span style="color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);">yohanvishvajith@gmail.com</span><br><button class="btn btn-primary" type="button" style="height: 40px;width: 70px;padding: 0px;">Update</button><br></p>
                                                 </form>

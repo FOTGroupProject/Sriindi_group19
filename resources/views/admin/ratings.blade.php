@@ -24,10 +24,10 @@
                                     </select>&nbsp;</label></div>
                         </div>
                         <div class="col-md-6 text-end" style="position: static;"><select style="text-align: right;position: relative;">
-                                <option value="all" selected="">All</option>
-                                <option value="13">Stock</option>
-                                <option value="14">Popularity</option>
-                                <option value="">Black list</option>
+                                <option value="all" selected="">Select Order</option>
+                                <option value="13">Negative Rating</option>
+                                <option value="14">Positive Rating</option>
+                                <option value="">Average Rating</option>
                             </select>
                             <div class="text-md-end dataTables_filter" id="dataTable_filter-1" style="text-align: right;width: 240.0px;height: 40px;position: relative;display: inline-block;"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label><button class="btn btn-primary" type="button">Go</button></div>
                         </div>

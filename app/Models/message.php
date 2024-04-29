@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class message extends Model
 {
     use HasFactory;
-    protected $table = 'orders';
-    protected $fillable = ['status', 'total', 'date', 'order_id','payment_method'];
+    protected $table = 'messages';
+    protected $fillable = ['sender_id', 'receiver_id', 'message'];
 }

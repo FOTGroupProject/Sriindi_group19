@@ -8,7 +8,7 @@
                @include('layouts.nav')
                 <div class="container-fluid">
                     <h3 class="text-dark mb-1">Add Suppliers</h3>
-                    <form >
+                  
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -33,21 +33,20 @@
                                     <td>{{ $suppliers->address }}</td>
                                     <td>{{ $suppliers->tax_id }}</td>
                                     <td>{{ $suppliers->active }}</td>
-                                    <td>{{ $suppliers->function }}</td>
+                                    
                                     <td>
-
-                                    <form action="{{ route('supplier.destroy', [$suppliers->id]) }}"method="get">
-
-                                    <input type="submit" class="btn btn-danger" value="Delete">
-</form>
-
+                                    <form action=""method="get">
+                                    <input type="submit" class="btn btn-primary" value="update">
+                                    </form>
+                                    <a href="destroysupplier/{{$suppliers->id}}">    <button class="btn btn-danger" >Delete</button></a>
+                                    
                                     </td>
                                 </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
-                    </form>
+                   
                 </div>
             </div>
 

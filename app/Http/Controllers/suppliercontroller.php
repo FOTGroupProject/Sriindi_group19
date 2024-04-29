@@ -23,7 +23,7 @@ class suppliercontroller extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
             'phone' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'tax_id' => 'required|string|max:255',

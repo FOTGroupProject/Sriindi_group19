@@ -30,7 +30,7 @@
                         </form>
                     </div>
                     <div style="border-style: solid;">
-                        <form>
+                     
                             <h3 class="text-dark mb-4">Current Category</h3>
                             <div class="table-responsive">
                                 <table class="table">
@@ -56,14 +56,20 @@
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Category</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form action="/updatecategory/{{ $category->id }}" method="get">
+      <form action="category/{{ $category->id }}" method="get">
       <div class="modal-body">
-        <input type="text" name="categoryname" id="" value="{{ $category->category}}">
+        <input type="text" name="category" id="" value="{{ $category->category}}">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <input type="submit" class="btn btn-primary">
       </div>
+      @if(session('success3'))
+                        <script>
+                            alert("Category updated succssfully");
+                        </script>
+                 
+                    @endif
       </form>
     </div>
   </div>
@@ -87,7 +93,7 @@
                                 </table>
                             </div>
                             <div style="height: 12px;"></div>
-                        </form>
+                       
                     </div>
 
 

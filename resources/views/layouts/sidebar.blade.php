@@ -2,13 +2,14 @@
 <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
             <div class="container-fluid d-flex flex-column p-0">
 
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="  background: var(--bs-link-hover-color);width: 80%;">
+                
+
+                
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+               <li> <div class="navbar-brand d-flex  align-items-center sidebar-brand " style="  background: var(--bs-link-hover-color);width: 100%;">
                     <div class="sidebar-brand-icon rotate-n-15"><img style="transform: rotate(15deg);" src="assets/img/logo.png" width="70" height="70"></div>
                     <div class="sidebar-brand-text mx-3"><span class="text-lowercase" style="font-family: ABeeZee, sans-serif;">Sriindi</span></div>
-                </a>
-
-                <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light" id="accordionSidebar">
+                </div></li>
                     <li class="nav-item"><a class="nav-link active" href="index"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                    <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">

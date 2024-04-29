@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('address');
             $table->string('tax_id');
-            $table->tinyInteger('active')->default(1);
+            $table->string('active');
             $table->timestamps();
             // Add other columns as needed
 

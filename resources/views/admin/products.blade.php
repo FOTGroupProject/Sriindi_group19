@@ -13,7 +13,7 @@
 
 
 
-                </div>
+                
                 <div>
                     <h3 class="text-dark mb-4">Products</h3>
                     <div class="row">
@@ -25,20 +25,23 @@
                                         <option value="100">100</option>
                                     </select>&nbsp;</label></div>
                         </div>
-                        <div class="col-md-6 text-end" style="position: static;"><select style="text-align: right;position: relative;">
+                        <div class="col-md-6 text-end" style="position: static;"><select style="text-align: right;position: relative;" onchange="filterProducts()"id="productoption">
                                 <option value="all" selected="">All</option>
-                                <option value="13">Stock</option>
-                                <option value="14">Popularity</option>
-                                <option value="">Black list</option>
+                                <option value="Instock">Instock</option>
+                                <option value="outstock">outstock</option>
+                                <option value="Popularity">Popularity</option>
+                                <option value="Blacklist">Blacklist</option>
                             </select>
                             <div class="text-md-end dataTables_filter" id="dataTable_filter" style="text-align: right;width: 240.0px;height: 40px;position: relative;display: inline-block;"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label><button class="btn btn-primary" type="button">Go</button></div>
                         </div>
+                    
+
                     </div>
                     <div class="table-responsive" style="position: relative;">
-                        <table class="table">
-                            <thead>
+                        <table class="table" id="product_table">
+                          
                             <tr>
-                                <th style="margin-right: 0px;width: 80.0px;text-align: center;">Product ID</th>
+                                <th style="margin-right: 0px;width: 80.0px;text-align: center;" id="product_id_col">Product ID</th>
                                 <th style="width: 110.0px;">Name</th>
                                 <th>Category</th>
                                 <th>Image</th>
@@ -47,10 +50,13 @@
                                 <th style="width: 70px;">Quantity</th>
                                 <th style="width: 100px;">Regular Price</th>
                                 <th style="width: 80px;">Sales Price</th>
+                                <th style="width: 80px;">blacklist</th>
+                                
+                                <th style="width: 80px;">total ordered</th>
+                                
                                 <th class="text-center" style="position: relative;width: 150px;">Options</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                            
                             @foreach($products as $product)
                                 <tr>
                                     <td>{{ $product->id }}</td>
@@ -62,6 +68,10 @@
                                     <td>{{ $product->quantity }}</td>
                                     <td>{{ $product->regularprice }}</td>
                                     <td>{{ $product->salesprice }}</td>
+                                    <td>{{ $product->blacklist_status }}</td>
+                                    
+                                    <td>{{ $product->total_quantity_ordered }}</td>
+                                    
                                     <td class="text-center" style="padding: 0px;">
                                         <button  class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalCenter">Update</button>
 
@@ -73,7 +83,54 @@
                                         </form>
                                     </td>
                                 </tr>
+                        
                             @endforeach
+                            </table>
+                            <script>
+    function filterProducts() {
+        var selectedValue = document.getElementById('productoption').value;
+        var table = document.getElementById('product_table');
+        var rows = table.rows;
+        if (selectedValue === 'outstock'){
+            for (var i = 1; i < rows.length; i++) {
+                var cells = rows[i].cells;
+                var quantity = parseInt(cells[6].innerText.trim());
+                if (quantity < 10) {
+                    rows[i].style.display = 'table-row';  
+                } else {
+                    rows[i].style.display = 'none';
+                
+                }
+                console.log(quantity);
+            }
+        }else if(selectedValue === 'Instock'){  
+            for (var i = 1; i < rows.length; i++) {
+                var cells = rows[i].cells;
+                 var quantity = parseInt(cells[6].innerText.trim());
+                 if (quantity > 5) {
+                    rows[i].style.display = 'table-row';  
+                 } else {
+                    rows[i].style.display = 'none';
+                   
+                 }
+                console.log(quantity);
+               }}
+       // for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip the header row
+            // var cells = rows[i].cells;
+            // var category = cells[2].innerText.trim(); // Assuming category is in the third column (index 2)
+            // var quantity = parseInt(cells[6].innerText.trim()); // Assuming quantity is in the seventh column (index 6)
+
+            // if (selectedValue === 'Outstock' && category === 'Outstock' && quantity < 10) {
+            //     rows[i].style.display = 'table-row';
+            // } else if (selectedValue === 'Outstock') {
+            //     rows[i].style.display = 'none';
+            // } else {
+            //     rows[i].style.display = 'table-row';
+            // }
+           
+        }
+    
+</script>
 
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -114,6 +171,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
                             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -144,5 +202,4 @@
         </div>
 
 </div>
-
-
+</div>

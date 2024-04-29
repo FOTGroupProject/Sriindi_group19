@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\blacklist;
 use App\Models\category;
@@ -11,6 +12,40 @@ use App\Models\payment;
 use App\Models\orders;
 class productController extends Controller
 {
+    public function saveproduct(Request $request)
+    {
+        $regularPrice = $request->input('regularprice');
+        $salesPrice = $request->input('salesprice');
+        if ($regularPrice < $salesPrice) {
+            return back()->withErrors(['regularprice' => 'Regular price must be greater than sales price.'])->withInput();
+        } else{
+        $request->validate([
+            'name' => 'required|string|max:255|unique:products,name',
+            'sdescription' => 'required|string|max:255',
+            'sku' => 'required|string|max:255|unique:products,sku',
+            'category' => 'required|string|max:255',
+            'quantity' => 'required|string|max:255',
+            'regularprice' => 'required|string|max:255',
+            'salesprice' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        $imageName = $request->sku. time().'.'.$request->image->extension(); 
+        $request->image->move(public_path('/products'), $imageName);
+        $products = new Products([
+            'name' => $request->input('name'),
+            'sdescription' => $request->input('sdescription'),
+            'sku' => $request->input('sku'),
+            'category' => $request->input('category'),
+            'quantity' => $request->input('quantity'),
+            'regularprice' => $request->input('regularprice'),
+            'salesprice' => $request->input('salesprice'),
+            'image' => $imageName,
+        ]);
+        $products->save();
+ return redirect()->back()->with('success', 'blacklist added successfully');
+
+    }
+    }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -24,18 +59,20 @@ class productController extends Controller
         return redirect()->back()->with('success', 'blacklist added successfully');
     }
 
-    public function updatecategory(Request $request, $category_id)
+    public function updatecategory(string $id, Request $request)
     {
-        $category=category::find($category_id);
+        $category=category::find($id);
         $category->category=$request->category;
         $category->save();
-        return redirect()->back()->with('success', 'category updated successfully');
+        return redirect()->back()->with('success3', 'category updated successfully');
+       
     }
+
     
     public function vieworders()
     {
         $orders = orders::all(); // Fetch the row count from the products table
-     
+        
         return view('/admin/orders',compact('orders'));
     }
     public function catstore(Request $request)
@@ -74,7 +111,40 @@ class productController extends Controller
     }
 
     public function viewproduct(){
-        $products = products::all(); // Fetch all products from the database
+        $products = products::select(
+            'products.id',
+            'products.name',
+            'products.sdescription',
+            'products.image',
+            'products.sku',
+            'products.category',
+            'products.quantity',
+            'products.regularprice',
+            'products.salesprice',
+            'products.created_at',
+            'products.updated_at',
+            'blacklist.blacklist_id', // Include the non-aggregated column
+            DB::raw("CASE WHEN blacklist.blacklist_id IS NOT NULL THEN 'Yes' ELSE 'No' END AS blacklist_status"),
+            DB::raw("COALESCE(SUM(order_details.quantity), 0) AS total_quantity_ordered")
+        )
+        ->leftJoin('blacklist', 'products.id', '=', 'blacklist.product_id')
+        ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id')
+        ->groupBy(
+            'products.id',
+            'products.name',
+            'products.sdescription',
+            'products.image',
+            'products.sku',
+            'products.category',
+            'products.quantity',
+            'products.regularprice',
+            'products.salesprice',
+            'products.created_at',
+            'products.updated_at',
+            'blacklist.blacklist_id' // Include the non-aggregated column in GROUP BY
+        )
+        ->get();
+    
         $categories = category::all();
         return view('/admin/products', compact('products', 'categories'));
     }
@@ -86,41 +156,7 @@ class productController extends Controller
         $categories = category::all();
         return view('/admin/category', compact( 'categories'));
     }
-    public function productstore(Request $request)
-    {
-        $regularPrice = $request->input('regularprice');
-        $salesPrice = $request->input('salesprice');
-
-
-        if ($regularPrice < $salesPrice) {
-            return back()->withErrors(['regularprice' => 'Regular price must be greater than sales price.'])->withInput();
-        } else {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255|unique:products,name',
-                'sdescription' => 'required|string|max:255',
-                'sku' => 'required|string|max:255|unique:products,sku',
-                'category' => 'required|string|max:255',
-                'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
-                'quantity' => 'required|string|max:255',
-                'regularprice' => 'required|string|max:255',
-                'salesprice' => 'required|string|max:255',
-            ]);
-             $imagePath = $request->file('image')->store('images');
-            return $imagePath;
-
-            //$validatedData['image'] = $imagePath;
-            // Use the create method to store the validated data
-
-
-              //  products::create($validatedData);
-
-           //     return redirect()->back()->with('success', 'blacklist added successfully');
-
-
-        }
-
-
-    }
+    
 
 
 }
