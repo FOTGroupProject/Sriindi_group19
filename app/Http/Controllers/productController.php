@@ -10,9 +10,10 @@ use App\Models\products;
 use App\Models\User;
 use App\Models\payment;
 use App\Models\orders;
+use App\Models\supplier;
 class productController extends Controller
 {
-    public function saveproduct(Request $request)
+    public function addproduct(Request $request)
     {
         $regularPrice = $request->input('regularprice');
         $salesPrice = $request->input('salesprice');
@@ -40,12 +41,23 @@ class productController extends Controller
             'regularprice' => $request->input('regularprice'),
             'salesprice' => $request->input('salesprice'),
             'image' => $imageName,
+            'supplier_id' => $request->input('supplier_id'),
         ]);
         $products->save();
  return redirect()->back()->with('success', 'blacklist added successfully');
 
     }
     }
+
+    public function addquantity(Request $request)
+    {
+        $supplierId = $request->input('supplier_id');
+        $products = supplier_product::where('supplier_id', $supplierId)->get();
+        $suppliers = Supplier::all(); // You can pass this to the view for the select dropdown
+        return view('admin.sandp',compact('products', 'suppliers'));
+    }
+  
+   
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -150,7 +162,8 @@ class productController extends Controller
     }
     public function categorysendtoproductpage(){
         $categories = category::all();
-        return view('/admin/addproduct', compact( 'categories'));
+        $suppliers = supplier::all();
+        return view('/admin/addproduct', compact( 'categories', 'suppliers'));
     }
     public function categorysendtocategorypage(){
         $categories = category::all();

@@ -8,6 +8,7 @@ use App\Http\Controllers\suppliercontroller;
 use App\Http\Controllers\MessageController;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,7 +47,11 @@ Route::get('/category', [productController::class, 'categorysendtocategorypage']
 Route::get('/addproductpage', [productController::class, 'categorysendtoproductpage'])->name('addtoblacklist');
 
 //product section
-Route::post('/addproduct', [productController::class, 'saveproduct'])->name('product.add');
+Route::post('/addproduct', [productController::class, 'addproduct'])->name('product.add');
+
+Route::get('/addquantity', [productController::class, 'addquantity'])->name('product.addquantity');
+Route::get('/viewproducts', [productController::class, 'addquantity2'])->name('suplier.viewproducts');
+
 Route::get('/orders', [productController::class, 'vieworders'])->name('orders');
 Route::get('/category/{category_id}', [productController::class, 'updatecategory'])->name('upcategory');
 Route::get('/blacklist', [productController::class, 'blacklist'])->name('blacklist');
@@ -64,9 +69,10 @@ Route::get('/updateproduct', function () {
 //suplier section
 Route::get('/viewsupplier', [suppliercontroller::class, 'viewsupplier'])->name('viewsupplier');
 Route::get('/editsupplier', [suppliercontroller::class, 'editsupplier'])->name('supplier.edit');
-Route::get('/updatesupplier', [suppliercontroller::class, ''])->name('supplier.update');
+Route::get('/updatesupplier/{id}', [suppliercontroller::class, 'updatesupplier'])->name('supplier.update');
 Route::get('/destroysupplier/{id}', [suppliercontroller::class, 'deletesupplier'])->name('supplier.destroy');
 Route::get('/addsupplier', [suppliercontroller::class, 'addsupplier'])->name('supplier.add');
+Route::get('/addtoblacklist/{id}', [suppliercontroller::class, 'addtoblacklist'])->name('supplier.addblacklist');
 
 //auth section
 Route::get('/dashboard', function () {

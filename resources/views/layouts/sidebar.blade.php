@@ -1,10 +1,6 @@
 
 <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
             <div class="container-fluid d-flex flex-column p-0">
-
-                
-
-                
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                <li> <div class="navbar-brand d-flex  align-items-center sidebar-brand " style="  background: var(--bs-link-hover-color);width: 100%;">
                     <div class="sidebar-brand-icon rotate-n-15"><img style="transform: rotate(15deg);" src="assets/img/logo.png" width="70" height="70"></div>
@@ -22,6 +18,7 @@
                                 <li><a  class="nav-link" href="product"><i class="fas fa-boxes"></i><span>View Products</span> </a></li>
                                 <li><a  class="nav-link" href="ratings"><i class="fas fa-star"></i><span>Rating</span> </a></li>
                                 <li><a  class="nav-link" href="blacklist"><i class="fas fa-ban"></i><span>Blacklist</span> </a></li>
+                                <li><a  class="nav-link" href="sandp"><i class="fas fa-ban"></i><span>sandp</span> </a></li>
 
                             </ul>
                         </div>

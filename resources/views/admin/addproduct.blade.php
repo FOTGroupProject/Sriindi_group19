@@ -25,6 +25,12 @@
                             }
                             @endforeach
                         </select>
+                        <label class="form-label">Supplier</label><select class="form-select d-inline-block form-select form-select-sm" name="Supplier">
+                            @foreach($suppliers as $Supplier){
+                            <option value="{{ $Supplier->id }}">{{ $Supplier->name }}</option>
+                            }
+                            @endforeach
+                        </select>
                         <label class="form-label">Quantity</label><input class="form-control" type="number" name="quantity">
                         <label class="form-label">Regular Price</label><input class="form-control" type="number" step="0.01" name="regularprice">
                         <label class="form-label">Sales Price</label><input class="form-control" type="number" step="0.01" name="salesprice">

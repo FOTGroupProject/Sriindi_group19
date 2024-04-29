@@ -1,5 +1,5 @@
 @include('layouts.header')
-<body id="page-top">
+<body id="page-top" onload="onLoadFunction()">
 <div id="wrapper">
     {{--        //sidebar item goes here--}}
     @include('layouts.sidebar')
@@ -26,10 +26,10 @@
                                     </select>&nbsp;</label></div>
                         </div>
                         <div class="col-md-6 text-end" style="position: static;"><select style="text-align: right;position: relative;" onchange="filterProducts()"id="productoption">
-                                <option value="all" selected="">All</option>
+                                
                                 <option value="Instock">Instock</option>
                                 <option value="outstock">outstock</option>
-                                <option value="Popularity">Popularity</option>
+                                <option value="Popularity" selected>Popularity</option>
                                 <option value="Blacklist">Blacklist</option>
                             </select>
                             <div class="text-md-end dataTables_filter" id="dataTable_filter" style="text-align: right;width: 240.0px;height: 40px;position: relative;display: inline-block;"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label><button class="btn btn-primary" type="button">Go</button></div>
@@ -52,7 +52,7 @@
                                 <th style="width: 80px;">Sales Price</th>
                                 <th style="width: 80px;">blacklist</th>
                                 
-                                <th style="width: 80px;">total ordered</th>
+                                <th style="width: 80px;"id="total_quantity_col">total ordered</th>
                                 
                                 <th class="text-center" style="position: relative;width: 150px;">Options</th>
                             </tr>
@@ -83,15 +83,58 @@
                                         </form>
                                     </td>
                                 </tr>
-                        
                             @endforeach
                             </table>
                             <script>
+                                function onLoadFunction(){
+                                    var selectedValue = document.getElementById('productoption').value;
+                                    var table = document.getElementById('product_table');
+                                    var rows = table.rows;
+                                    for (var i = 1; i < rows.length; i++) {
+                                            var cells = rows[i].cells;
+                                            var blist = cells[9].innerText.trim(); 
+                                            if (blist =="Yes"){
+                                                rows[i].style.backgroundColor = 'yellow'; 
+                                            }
+                                    }
+                                }
+
     function filterProducts() {
         var selectedValue = document.getElementById('productoption').value;
         var table = document.getElementById('product_table');
         var rows = table.rows;
-        if (selectedValue === 'outstock'){
+        if (selectedValue === 'all') {
+            for (var i = 1; i < rows.length; i++) {
+                rows[i].style.display = 'table-row';
+            }
+        } 
+        else if (selectedValue === 'Popularity') {
+            var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("product_table");
+    switching = true;
+
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        for (i = 1; i < rows.length - 1; i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[10]; // Index 10 corresponds to the total_quantity_ordered column
+            y = rows[i + 1].getElementsByTagName("td")[10];
+
+            if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+        } 
+        else if (selectedValue === 'outstock'){
             for (var i = 1; i < rows.length; i++) {
                 var cells = rows[i].cells;
                 var quantity = parseInt(cells[6].innerText.trim());
@@ -101,9 +144,9 @@
                     rows[i].style.display = 'none';
                 
                 }
-                console.log(quantity);
+                
             }
-        }else if(selectedValue === 'Instock'){  
+        }else if(selectedValue === 'Instock'){
             for (var i = 1; i < rows.length; i++) {
                 var cells = rows[i].cells;
                  var quantity = parseInt(cells[6].innerText.trim());
@@ -113,8 +156,21 @@
                     rows[i].style.display = 'none';
                    
                  }
-                console.log(quantity);
-               }}
+                }
+        }else if(selectedValue === 'Blacklist'){
+            for(var i = 1; i < rows.length; i++) {
+                var cells = rows[i].cells;
+                var blist = cells[9].innerText.trim(); 
+                if (blist =="Yes"){
+                    rows[i].style.display = 'table-row';  
+                }
+                else{
+                    rows[i].style.display = 'none';
+                }
+            }   
+        }
+    }
+        
        // for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip the header row
             // var cells = rows[i].cells;
             // var category = cells[2].innerText.trim(); // Assuming category is in the third column (index 2)
@@ -128,7 +184,7 @@
             //     rows[i].style.display = 'table-row';
             // }
            
-        }
+        
     
 </script>
 

@@ -23,8 +23,9 @@ return new class extends Migration
             $table->decimal('regularprice', 10, 2);
             $table->decimal('salesprice', 10, 2);
             $table->timestamps();
+            $table->string('supplier_id');
             // Add other columns as needed
-
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
         });
     }
 
