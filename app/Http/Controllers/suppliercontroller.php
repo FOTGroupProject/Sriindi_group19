@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\supplier;
 use App\Models\supplier_blacklist;
 class suppliercontroller extends Controller
@@ -10,7 +11,21 @@ class suppliercontroller extends Controller
     
     public function viewsupplier()
     {
-        $supplier = supplier::all();
+        $supplier = Supplier::leftJoin('supplier_blacklist as b', 'suppliers.id', '=', 'b.supplier_id')
+        ->select(
+            'suppliers.id',
+            'suppliers.name',
+            'suppliers.email',
+            'suppliers.phone',
+            'suppliers.address',
+            'suppliers.tax_id',
+            'suppliers.active',
+            'suppliers.created_at',
+            'suppliers.updated_at',
+            DB::raw('CASE WHEN b.supplier_id IS NOT NULL THEN "yes" ELSE "no" END AS blacklisted')
+        )
+        ->get();
+    
         return view('admin.suplier', compact('supplier'));
     }
 

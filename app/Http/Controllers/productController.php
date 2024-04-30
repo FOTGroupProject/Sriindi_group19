@@ -15,6 +15,7 @@ class productController extends Controller
 {
     public function addproduct(Request $request)
     {
+     
         $regularPrice = $request->input('regularprice');
         $salesPrice = $request->input('salesprice');
         if ($regularPrice < $salesPrice) {
@@ -29,6 +30,7 @@ class productController extends Controller
             'regularprice' => 'required|string|max:255',
             'salesprice' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'supplier' => 'required|string|max:255'
         ]);
         $imageName = $request->sku. time().'.'.$request->image->extension(); 
         $request->image->move(public_path('/products'), $imageName);
@@ -41,13 +43,13 @@ class productController extends Controller
             'regularprice' => $request->input('regularprice'),
             'salesprice' => $request->input('salesprice'),
             'image' => $imageName,
-            'supplier_id' => $request->input('supplier_id'),
+            'supplier_id' => $request->input('supplier'),
         ]);
         $products->save();
  return redirect()->back()->with('success', 'blacklist added successfully');
 
-    }
-    }
+    
+    }}
 
     public function addquantity(Request $request)
     {

@@ -25,7 +25,7 @@
                             }
                             @endforeach
                         </select>
-                        <label class="form-label">Supplier</label><select class="form-select d-inline-block form-select form-select-sm" name="Supplier">
+                        <label class="form-label">Supplier</label><select class="form-select d-inline-block form-select form-select-sm" name="supplier">
                             @foreach($suppliers as $Supplier){
                             <option value="{{ $Supplier->id }}">{{ $Supplier->name }}</option>
                             }

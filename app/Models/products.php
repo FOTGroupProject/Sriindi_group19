@@ -17,5 +17,6 @@ class products extends Model
     'category',
     'quantity',
     'regularprice',
-    'salesprice',];
+    'salesprice',
+    'supplier_id'];
 }
