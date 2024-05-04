@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('category');
-            $table->string('updated_at');
-            $table->string('created_at');
+        Schema::create('supplier_blacklist', function (Blueprint $table) {
+            $table->id();
+            $table->string('supplier_id');
+            $table->timestamps();
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
+   
+       
         });
     }
 
@@ -25,7 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('supplier_blacklist');
     }
 };

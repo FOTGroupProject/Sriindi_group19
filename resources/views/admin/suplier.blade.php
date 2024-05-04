@@ -1,185 +1,172 @@
-<!DOCTYPE html>
-<html data-bs-theme="light">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Blank Page - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-</head>
-
-<body id="page-top">
+@include('layouts.header')
+<body id="page-top" onload="onLoadFunction()">
     <div id="wrapper">
-        <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="background: var(--bs-link-hover-color);width: 100%;">
-                    <div class="sidebar-brand-icon rotate-n-15"><img style="background: url(&quot;assets/img/sriindi%20(1)_240131_232354-1.png&quot;);transform: rotate(15deg);" src="assets/img/sriindi%20(1)_240131_232354-1.png" width="70" height="70"></div>
-                    <div class="sidebar-brand-text mx-3"><span class="text-lowercase" style="font-family: ABeeZee, sans-serif;">Sriindi</span></div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="index"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="product"><i class="fas fa-table"></i><span>Product</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-table"></i><span>Orders</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-table"></i><span>Customers</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="login"><i class="far fa-user-circle"></i><span>Login</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="register"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
-                   <li class="nav-item"> <a class="nav-link active" href="suplier.html"><i class="fas fa-window-maximize"></i><span>Suppliers</span></a></li>
-                   <li class="nav-item"><a class="nav-link" href="register.html" style="background: var(--bs-danger);"><i class="fas fa-user-circle"></i><span>Logout</span></a></li>
-                </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
-            </div>
-        </nav>
+        @include('layouts.sidebar')
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
-                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
-                        </form>
-                        <ul class="navbar-nav flex-nowrap ms-auto">
-                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="me-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+               @include('layouts.nav')
+                
+
+                    <h3 class="text-dark mb-1">Suppliers</h3>
+                    <div class="table-responsive">
+                        <table class="table" id="suppliertable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>E-mail</th>
+                                    <th>phone</th>
+                                    <th>Address</th>
+                                    <th>Tax ID</th>
+                                    <th>Active/Inactive</th>
+                                    <th>status</th>
+                                    <th>function</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($supplier as $suppliers)
+                            <tr>
+                                <td>{{ $suppliers->id }}</td>
+                                <td>{{ $suppliers->name }}</td>
+                                <td>{{ $suppliers->email }}</td>
+                                <td>{{ $suppliers->phone }}</td>
+                                <td>{{ $suppliers->address }}</td>
+                                <td>{{ $suppliers->tax_id }}</td>
+                                <td>{{ $suppliers->active }}</td>
+                                <td>{{ $suppliers->blacklisted }}</td>
+                                <td>
+                                <button class="btn btn-primary " type="button" style="background: var(--bs-green);" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $suppliers->id }}">Up</button>
+                                
+
+                                <a href="destroysupplier/{{$suppliers->id}}"><button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this supplier?')">Del</button></a>
+                                <a href="addtoblacklist/{{$suppliers->id}}"><button  class="btn btn-primary blacklist-btn" onclick="return confirm('Are you sure you want to add this supplier to blacklist?')">Bla</button></a>
+                                <a href="removeblacklist/{{$suppliers->id}}"><button id="removeblacklist" class="btn btn-primary remove-blacklist-btn" onclick="return confirm('Are you sure you want to remove this supplier from blacklist?')">Rem</button></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="modal fade" id="staticBackdrop{{  $suppliers->id  }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Supplier</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="updatesupplier/{{ $suppliers->id}}" method="get">
+                                                <div class="form-group">
+                                                    <label for="name">Supplier Name:</label>
+                                                    <input type="text" class="form-control" id="name" name="name" value="{{ $suppliers->name }}" autocomplete="name" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">E-mail:</label>
+                                                    <input type="email" class="form-control" id="email" name="email" value="{{ $suppliers->email }}" autocomplete="email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="phone">Phone:</label>
+                                                    <input type="number" class="form-control" id="phone" name="phone" value="{{ $suppliers->phone }}" autocomplete="phone" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="address">Address:</label>
+                                                    <input type="text" class="form-control" id="address" name="address" value="{{ $suppliers->address }}" autocomplete="address" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tax_id">Tax ID:</label>
+                                                    <input type="text" class="form-control" id="tax_id" name="tax_id" value="{{ $suppliers->tax_id }}" autocomplete="taxid" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="activ">Active/Inactive:</label>
+                                                    <select name="active">
+                                                        <option value="active" {{ $suppliers->active == 'active' ? 'selected' : '' }}>Active</option>
+                                                        <option value="inactive" {{ $suppliers->active == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                                                    </select>
+                                                </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-primary">
+                                            </div>
+                                            @if(session('successupdate'))
+                                                <script>
+                                                    alert("supplier updated successfully");
+                                                </script>
+                                            @endif
+                                        
                                         </div>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 12, 2019</span>
-                                                <p>A new monthly report is ready to download!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 7, 2019</span>
-                                                <p>$290.29 has been deposited into your account!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">December 2, 2019</span>
-                                                <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">7</span><i class="fas fa-envelope fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span></div>
-                                                <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar2.jpeg">
-                                                <div class="status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>I have the photos that you ordered last month!</span></div>
-                                                <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar3.jpeg">
-                                                <div class="bg-warning status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span></div>
-                                                <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="dropdown-list-image me-3"><img class="rounded-circle" src="assets/img/avatars/avatar5.jpeg">
-                                                <div class="bg-success status-indicator"></div>
-                                            </div>
-                                            <div class="fw-bold">
-                                                <div class="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
-                                                <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                                    </div>
-                                </div>
-                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-end" aria-labelledby="alertsDropdown"></div>
-                            </li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
-                            <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="container-fluid">
-                    <h3 class="text-dark mb-1">Add Suppliers</h3>
-                    <form>
-
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Supplier ID</th>
-                                        <th>Supplier Name</th>
-                                        <th>E-mail</th>
-                                        <th>phone</th>
-                                        <th>Address</th>
-                                        <th>Tax ID</th>
-                                        <th>Active/Inactive</th>
-                                        <th>Date added</th>
-
-                                        <th>function</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Cell 1</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 2</td>
-                                        <td>Cell 2</td>
-                                    </tr>
-                                    <tr></tr>
-
-                                </tbody>
-                            </table>
+                        @endforeach
+                
+                        <h3 class="text-dark mb-1">Add Suppliers</h3>
+                        <form method="get" action="/addsupplier">
+                            <div class="form-group">
+                                <label for="name">Supplier Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" autocomplete="name"required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail:</label>
+                                <input type="email" class="form-control" id="email" name="email" autocomplete="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone:</label>
+                                <input type="text" class="form-control" id="phone" name="phone" autocomplete="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address:</label>
+                                <input type="text" class="form-control" id="address" name="address" autocomplete="address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tax_id">Tax ID:</label>
+                                <input type="text" class="form-control" id="tax_id" name="tax_id" autocomplete="taxid" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="activ">Active/Inactive:</label><br>
+                                <select name="active" id="activ">
+                                    <option value="active" selected>Active</option>
+                                    <option value="inactive" >Inactive</option>
+                                </select>
+                            </div>
+                            <br>
+                            <input type="submit" class="btn btn-success " value="Add Supplier">
+                            <input type="reset" class="btn btn-primary " value="Clear">
+                            @if(session('success2'))
+                                <script>
+                                    alert("supplier added successfully");
+                                </script>
+                            @endif
+                        </form>
+                        <br>
+                        <hr>
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </form>
-                </div>
+                        @endif
+
+                        @include('layouts.footer')
             </div>
-
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © sriindi 2024</span></div>
-                </div>
-            </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/theme.js"></script>
-</body>
+<script>
+function onLoadFunction(){
 
-</html>
+var table = document.getElementById('suppliertable');
+var rows = table.rows;
+for (var i = 1; i < rows.length; i++) {
+        var cells = rows[i].cells;
+        var blist = cells[7].innerText.trim(); 
+        if (blist =="yes"){
+            rows[i].querySelector('.blacklist-btn').style.display = "none";
+        }
+        else{
+            rows[i].querySelector('.remove-blacklist-btn').style.display = "none";
+        }
+}
+}
+</script>
+</body>
