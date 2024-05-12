@@ -48,18 +48,22 @@ Route::get('/addproductpage', [productController::class, 'categorysendtoproductp
 
 //product section
 Route::post('/addproduct', [productController::class, 'addproduct'])->name('product.add');
-
+Route::get('/addattributes', [productController::class, 'addattributes'])->name('attributes.add');
 Route::get('/addquantity', [productController::class, 'addquantity'])->name('product.addquantity');
 Route::get('/viewproducts', [productController::class, 'addquantity2'])->name('suplier.viewproducts');
-
 Route::get('/orders', [productController::class, 'vieworders'])->name('orders');
 Route::get('/category/{category_id}', [productController::class, 'updatecategory'])->name('upcategory');
+
+Route::get('/updateproduct/{id}', [productController::class, 'updateproduct'])->name('updateproduct');
+
 Route::get('/blacklist', [productController::class, 'blacklist'])->name('blacklist');
 Route::get('/ratings', [productController::class, 'ratingpageview'])->name('ratingview');
 Route::get('/addblacklist', [productController::class, 'store'])->name('addtoblacklist');
 Route::get('/addcategory', [productController::class, 'catstore'])->name('addcategories');
 Route::get('/product', [productController::class, 'viewproduct'])->name('product');
 Route::get('/deletecategory/{category_id}', [productController::class, 'deletecategory'])->name('delcategory');
+Route::get('/delattributes/{attributes}', [productController::class, 'delattributes'])->name('delattributes');
+Route::get('/deleteproduct/{product_id}', [productController::class, 'deleteproduct'])->name('deleteproduct');
 
 Route::get('/updateproduct', function () {
     return view('admin.updateproduct');

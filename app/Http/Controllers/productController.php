@@ -1,7 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\blacklist;
@@ -11,6 +12,7 @@ use App\Models\User;
 use App\Models\payment;
 use App\Models\orders;
 use App\Models\supplier;
+use App\Models\attributes;
 class productController extends Controller
 {
     public function addproduct(Request $request)
@@ -46,11 +48,82 @@ class productController extends Controller
             'supplier_id' => $request->input('supplier'),
         ]);
         $products->save();
- return redirect()->back()->with('success', 'blacklist added successfully');
-
+        return redirect()->back()->with('success', 'blacklist added successfully');
+        }
+    }
     
-    }}
+    public function updateproduct(string $id, Request $request)
+{
+    // Validate the incoming request data
+    $validator = Validator::make($request->all(), [
+        'name' => [
+            'required',
+            'string',
+            'max:255',
+            Rule::unique('products')->ignore($id),
+        ],
+        'sdescription' => 'required|string|max:255',
+        'sku' => [
+            'required',
+            'string',
+            'max:255',
+            Rule::unique('products')->ignore($id),
+        ],
+        'category' => 'required|string|max:255',
+        'quantity' => 'required|string|max:255',
+        'regularprice' => 'required|string|max:255',
+        'salesprice' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'supplier' => 'required|string|max:255'
+    ]);
 
+    // If validation fails, redirect back with error messages
+    if ($validator->fails()) {
+        return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
+    }
+
+    // Proceed with updating the product if validation passes
+    $product = Products::find($id);
+    if (!$product) {
+        return redirect()->back()->with('error', 'Product not found');
+    }
+
+    $product->name = $request->input('name');
+    $product->sdescription = $request->input('sdescription');
+    $product->sku = $request->input('sku');
+    $product->category = $request->input('category');
+    $product->quantity = $request->input('quantity');
+    $product->regularprice = $request->input('regularprice');
+    $product->salesprice = $request->input('salesprice');
+    $product->supplier_id = $request->input('supplier');
+
+    // Handle image upload if a new image is provided
+    if ($request->hasFile('image')) {
+        $imageName = $request->sku . '_' . time() . '.' . $request->image->extension(); 
+        $request->image->move(public_path('/products'), $imageName);
+        $product->image = $imageName;
+    }
+
+    $product->save();
+
+    return redirect()->back()->with('success', 'Product updated successfully');
+}
+    public function addattributes(Request $request)
+    {
+        $validdata=$request->validate([
+            'name' => 'required|string|max:35',  
+        ]);
+        attributes::create($validdata);
+        return redirect()->back()->with('attributes', 'attribute added successfully');
+    }
+    public function deleteproduct(string $product_id)
+    {
+        $deleteproduct = products::find($product_id);
+        $deleteproduct->delete();
+        return redirect()->back()->with('deleteproduct', 'product deleted successfully');
+    }
     public function addquantity(Request $request)
     {
         $supplierId = $request->input('supplier_id');
@@ -81,8 +154,6 @@ class productController extends Controller
         return redirect()->back()->with('success3', 'category updated successfully');
        
     }
-
-    
     public function vieworders()
     {
         $orders = orders::all(); // Fetch the row count from the products table
@@ -102,7 +173,14 @@ class productController extends Controller
       //  $cat = category::findOrFail($category_id);
       //  $cat->delete();
             category::destroy($category_id);
-        return redirect()->back()->with('success', 'Category deleted successfully');
+        return redirect()->back()->with('deletecat', 'Category deleted successfully');
+    }
+    public function delattributes($attributes)
+    {
+      //  $cat = category::findOrFail($category_id);
+      //  $cat->delete();
+      attributes::destroy($attributes);
+        return redirect()->back()->with('delattributes', 'attributes deleted successfully');
     }
     public function ratingpageview()
     {
@@ -132,6 +210,7 @@ class productController extends Controller
             'products.image',
             'products.sku',
             'products.category',
+            'products.supplier_id',
             'products.quantity',
             'products.regularprice',
             'products.salesprice',
@@ -150,6 +229,7 @@ class productController extends Controller
             'products.image',
             'products.sku',
             'products.category',
+            'products.supplier_id',
             'products.quantity',
             'products.regularprice',
             'products.salesprice',
@@ -158,9 +238,9 @@ class productController extends Controller
             'blacklist.blacklist_id' // Include the non-aggregated column in GROUP BY
         )
         ->get();
-    
+            $suppliers = supplier::all();
         $categories = category::all();
-        return view('/admin/products', compact('products', 'categories'));
+        return view('/admin/products', compact('products', 'categories', 'suppliers'));
     }
     public function categorysendtoproductpage(){
         $categories = category::all();
@@ -169,7 +249,8 @@ class productController extends Controller
     }
     public function categorysendtocategorypage(){
         $categories = category::all();
-        return view('/admin/category', compact( 'categories'));
+        $attributes = attributes::all();
+        return view('/admin/category', compact( 'categories', 'attributes'));
     }
     
 
