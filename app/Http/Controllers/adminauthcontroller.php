@@ -72,7 +72,7 @@ class adminauthcontroller extends Controller
              session(['otp' => rand(100000, 999999)]);
              session(['email' => 'yohancgd@gmail.com']);
           //  Mail::to($email)->send(new welcome(['otp' => $otp]));
-           return  redirect()->back()->with('success', session('otp'));
+           return  redirect()->back()->with('success5', session('otp'));
           
                  } else {
             // Email does not exist in the database

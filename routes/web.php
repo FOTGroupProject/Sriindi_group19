@@ -48,10 +48,9 @@ Route::get('/forgotpassword', function () {
 //admin auth
 Route::get('/registeradmin', [adminauthcontroller::class, 'register'])->name('register.admin');
 Route::post('/loginadmin', [adminauthcontroller::class, 'login'])->name('login.admin');
-Route::post('/resetpassword', [adminauthcontroller::class, 'resetpassword'])->name('reset.admin');
+Route::get('/resetpassword', [adminauthcontroller::class, 'resetpassword'])->name('reset.admin');
 Route::post('/forgetpassform', [adminauthcontroller::class, 'forgetpassword'])->name('forget.admin');
 Route::get('/profilesetting', [adminauthcontroller::class, 'profile'])->name('profile.admin');
-Route::post('/resetpassword', [adminauthcontroller::class, 'resetpassword'])->name('resetpassword.admin');
 Route::get('/otp', [adminauthcontroller::class, 'otpcnfm'])->name('otpcnfm.admin');
 Route::get('/profilesetting', [adminauthcontroller::class, 'profile'])->name('profile.admin');
 
