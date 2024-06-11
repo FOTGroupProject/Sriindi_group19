@@ -7,6 +7,7 @@ use App\Models\blacklist;
 use App\Models\category;
 use App\Models\products;
 
+use App\Models\adminuser;
 use App\Models\User;
 use App\Models\payment; 
 class product extends Controller
@@ -54,16 +55,18 @@ class product extends Controller
     {
         $productcount = products::count(); // Fetch the row count from the products table
         return view('/admin/index', ['productcount' => $productcount]);
+    }
     public function viewdashboard()
     {
         $productcount = products::count(); // Fetch the row count from the products table
         $users = User::count(); 
+        $adminuser=adminuser::all()->get();
         $payment = payment::count();
         $currentDate = Carbon::now()->toDateString();
         $todayearning = payment::where('created_at', $currentDate)->get();
         $monthlyearning = payment::whereMonth('created_at', date('m'))->get();
         $totalusers=User::count();
-        return view('/admin/index',compact('productcount','users','payment','todayearning','monthlyearning','totalusers'));
+        return view('/admin/index',compact('productcount','users','payment','todayearning','monthlyearning','totalusers','adminuser'));
     }
 
     public function viewproduct(){

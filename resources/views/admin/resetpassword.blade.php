@@ -20,24 +20,21 @@
                 </div>    
                 <div class="card-body w-100 p-3" >
                         <div class="row">
-                        <div class="col-lg-5 d-none d-lg-flex" style="display: flex; justify-content: center; align-items: center;">
-                    <div class="bg-register-image" style="background: url('assets/img/logo.png') no-repeat center; width: 400px; height: 585.9px; font-size: 15px; background-size: contain;"></div>
-                </div>
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;assets/img/User_icon_2.svg.png&quot;) round;background-size: contain;"></div>
+                            </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        <h4 class="text-dark mb-4">Reset Password</h4>
                                     </div>
-                                    <form class="user" action="/loginadmin" method="post">
-
+                                    <form class="user" action="/resetpassword" method="post">
                                         @csrf
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="username" required></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"required></div>
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
-                                            </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" aria-describedby="emailHelp" placeholder="Enter new password" name="newpassword" required ></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" aria-describedby="emailHelp" placeholder="conform password" name="newpassword_confirmation" required ></div>
+                                        <button class="btn btn-primary d-block btn-user w-100" type="submit">Update</button>
+                                    </form>
+
                                        <br>
                                        @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -49,12 +46,10 @@
                                             </div>
                                      @endif
                                     @if  (Session::has('success'))
-                                    <script>
-                                        alert("{{Session::get('success')}}" );
-                                    </script>
+                                    <div class="alert alert-success">
+                                        {{Session::get('success')}} 
+                                    </div>
                                     @endif
-                                    </form>
-                                    <div class="text-center"><a class="small" href="/forgotpassword">Forgot Password?</a></div>
                                 </div>
                             </div>
                         </div>

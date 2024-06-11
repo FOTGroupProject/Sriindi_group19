@@ -242,16 +242,68 @@ class productController extends Controller
         $categories = category::all();
         return view('/admin/products', compact('products', 'categories', 'suppliers'));
     }
+    public function pands(){
+        $products = products::select(
+            'products.id',
+            'products.name',
+            'products.sdescription',
+            'products.image',
+            'products.sku',
+            'products.category',
+            'products.supplier_id',
+            'products.quantity',
+            'products.regularprice',
+            'products.salesprice',
+            'products.created_at',
+            'products.updated_at',
+            'blacklist.blacklist_id', // Include the non-aggregated column
+            DB::raw("CASE WHEN blacklist.blacklist_id IS NOT NULL THEN 'Yes' ELSE 'No' END AS blacklist_status"),
+            DB::raw("COALESCE(SUM(order_details.quantity), 0) AS total_quantity_ordered")
+        )
+        ->leftJoin('blacklist', 'products.id', '=', 'blacklist.product_id')
+        ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id')
+        ->groupBy(
+            'products.id',
+            'products.name',
+            'products.sdescription',
+            'products.image',
+            'products.sku',
+            'products.category',
+            'products.supplier_id',
+            'products.quantity',
+            'products.regularprice',
+            'products.salesprice',
+            'products.created_at',
+            'products.updated_at',
+            'blacklist.blacklist_id' // Include the non-aggregated column in GROUP BY
+        )
+        ->get();
+            $suppliers = supplier::all();
+        $categories = category::all();
+        return view('/admin/pands', compact('products', 'categories', 'suppliers'));
+    }
     public function categorysendtoproductpage(){
         $categories = category::all();
         $suppliers = supplier::all();
         return view('/admin/addproduct', compact( 'categories', 'suppliers'));
+    }
+    public function updateqty(Request $request, $id){
+        $product = products::find($id);
+        $product->quantity = $request->quantity;
+        $product->save();
+        return redirect()->back()->with('success', 'Quantity updated successfully');
+      
     }
     public function categorysendtocategorypage(){
         $categories = category::all();
         $attributes = attributes::all();
         return view('/admin/category', compact( 'categories', 'attributes'));
     }
+    public function orderdetails( $id){
+    $orders=orders::where('id',$id)->get();
+return  $orders;
+    }
+    
     
 
 

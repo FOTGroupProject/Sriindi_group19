@@ -18,7 +18,10 @@ class WelcomeMail extends Mailable
     public function __construct(private string $title, private string  $body)
     {
     }
-
+    public function build()
+    {
+        return $this->subject('Password Reset')->view('emails.welcome');
+    }
     /**
      * Get the message envelope.
      */

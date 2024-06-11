@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html data-bs-theme="light">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -26,18 +25,17 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        <h4 class="text-dark mb-4">Forget Passwprd</h4>
                                     </div>
-                                    <form class="user" action="/loginadmin" method="post">
-
+                                    <form class="user" action="/forgetpassform" method="post">
                                         @csrf
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="username" required></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"required></div>
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
-                                            </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" required required></div>
+                                        <button id="sendotp" class="btn btn-primary d-block btn-user w-100" type="submit">Send OTP</button>
+                                    </form>
+                                    <form class="user" action="/otp" method="get">
+                                        <div class="mb-3"><input class="form-control form-control-user" required type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter OTP" name="otp" required></div>
+                                        <button id="otpbtn"class="btn btn-primary d-block btn-user w-100" type="submit">Verify</button>
+                                        </form>
                                        <br>
                                        @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -49,12 +47,40 @@
                                             </div>
                                      @endif
                                     @if  (Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{Session::get('success')}} 
+                                       
+                                    </div>
+                                        <script>
+const sendotpbtn = document.getElementById('sendotp');
+var otpbtn = document.getElementById('otpbtn');
+otpbtn.disabled = false;
+let countdown = 20; // Countdown from 5 seconds
+sendotpbtn.textContent = `Send OTP (${countdown})`;
+sendotpbtn.disabled = true;
+
+const countdownInterval = setInterval(() => {
+    countdown--; // Decrement the countdown
+    sendotpbtn.textContent = `Send OTP (${countdown})`;
+
+    if (countdown === 0) {
+        clearInterval(countdownInterval); // Stop the countdown
+        sendotpbtn.textContent = 'Send OTP';
+        sendotpbtn.disabled = false;
+       
+
+    }
+}, 1000); // Update the countdown every 1000 milliseconds (1 second)
+
+                                        </script>
+                                    @endif
+                                    
+                                    @if  (Session::has('otp'))
                                     <script>
-                                        alert("{{Session::get('success')}}" );
+                                        console.log("{{Session::get('otp')}}" );
                                     </script>
                                     @endif
-                                    </form>
-                                    <div class="text-center"><a class="small" href="/forgotpassword">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small" href="/adminlogin">Back to Login</a></div>
                                 </div>
                             </div>
                         </div>
@@ -66,6 +92,18 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script>
+    // Define a function to be executed when the page loads
+    function onLoadFunction() {
+      var otpbtn = document.getElementById('otpbtn');
+      otpbtn.disabled = true;
+
+      // You can add more code here to perform other tasks
+    }
+
+    // Assign the function to the onload event of the window
+    window.onload = onLoadFunction;
+  </script>
 </body>
 
 </html>

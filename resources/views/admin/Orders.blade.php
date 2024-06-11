@@ -39,14 +39,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        @foreach($orders as $order)
-                                        <td>{{$order->order_id}}</td>
-                                        <td>{{$order->date}}</td>
-                                        <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#m{{$order->order_id}}">{{$order->status}}</button></td>
-                                        <td>{{$order->total}}</td>
-                                      
-                                    </tr>
+                                @foreach($orders as $order)
+                                <tr>
+                                    <td>{{$order->id}}</td>
+                                    <td>{{$order->created_at}}</td>
+                                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal" data-order-id="{{$order->id}}">{{$order->status}}</button></td>
+                                    <td>{{$order->total}}</td>
+                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -67,85 +67,55 @@
                             </div>
                         </div>
                         <!-- model start -->
-                        <div class="modal fade" id="m{{$order->order_id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-               
+                        <div class="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Category</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    
-                                    <div class="modal-body">
-                                        <div class="row" style="">
-                                            <div class="col">
-                                                <h1 style="font-size: 20px;margin: 0;height: 25px;width: 200.9px;"><strong><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);">General</span></strong><br><br></h1>
-                                                <p><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Payment via {{$order->payment_method}}</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Date created:{{$order->date_}} @ ‎02:35&nbsp;</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Status:</span><span style="color: rgb(44, 51, 56); background-color: rgb(255, 255, 255);">&nbsp; </span>
-                                                <form action="/updatecategory/6" method="get">
-                                                <select name="status" id="status">
-    <optgroup label="This is a group">
-        <option value="12" {{ $order->status == 'Pending payment' ? 'selected' : '' }}>Pending payment</option>
-        <option value="13" {{ $order->status == 'Processing' ? 'selected' : '' }}>Processing</option>
-        <option value="14" {{ $order->status == 'Completed' ? 'selected' : '' }}>Completed</option>
-        <option value="Cancelled" {{ $order->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
-        <option value="Onhold" {{ $order->status == 'On hold' ? 'selected' : '' }}>On hold</option>
-        <option value="Refunded" {{ $order->status == 'Refunded' ? 'selected' : '' }}>Refunded</option>
-        <option value="Failed" {{ $order->status == 'Failed' ? 'selected' : '' }}>Failed</option>
-    </optgroup>
-</select>
-
-                                                    @endforeach  
-                                                    <br>
-                                                    <span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Customer:</span><span style="color: rgb(44, 51, 56); background-color: rgb(255, 255, 255);">&nbsp;</span><br><span style="color: rgb(68, 68, 68); background-color: rgb(255, 255, 255);">yohanvishvajith@gmail.com</span><br><button class="btn btn-primary" type="button" style="height: 40px;width: 70px;padding: 0px;">Update</button><br></p>
-                                                </form>
-                                            </div>
-                                        
-                                        
-                                            <div class="col" style="padding: 0px;">
-                                                <h1 style="font-size: 20px;margin: 0;height: 25px;text-align: left;"><strong><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);">Shipping</span></strong><br><br><br><br></h1>
-                                                <p><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Mr.yohan</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">No.280,Atulgama Road,Ankelipitiya ,Thalatuoya</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">kandy</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">20200</span><br><strong><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Phone:</span></strong><a href="tel:0703145633"><span style="color: rgb(34, 113, 177); background-color: rgb(255, 255, 255);">0703145633</span></a><br><br><br></p>
-                                            </div>
-                                        
-                                        
-                                            <div class="col">
-                                                <h1 style="font-size: 20px;margin: 0;height: 25px;"><strong><span style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);">Billing</span></strong><br><br><br><br></h1>
-                                                <p><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Mr.yohan</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">No.280,Atulgama Road,Ankelipitiya ,Thalatuoya</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">kandy</span><br><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">20200</span><br><strong><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Emailaddress:</span></strong><a href="mailto:yohanvisuio@gmail.com"><span style="color: rgb(34, 113, 177); background-color: rgb(255, 255, 255);">yohanvisuio@gmail.com</span></a><br><strong><span style="color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);">Phone:</span></strong><a href="tel:0703145633"><span style="color: rgb(34, 113, 177); background-color: rgb(255, 255, 255);">0703145633</span></a><br><br></p>
-                                            </div>
-                                        </div>                
-                                        <div class="table-responsive" style="position: static;display: inline;padding: 60px 0px;">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="margin-right: 0px;width: 250px;">Item</th>
-                                                        <th>Qty</th>
-                                                        <th>Price</th>
-                                                        <th>Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>ring</td>
-                                                        <td>3</td>
-                                                        <td>500</td>
-                                                        <td>1500</td>
-                                                    </tr>
-                                                    <tr></tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div>
-                                            <p class="text-start" style="width: 200px;height: 40px;display: inline;">Item Sub-total: 1500<br>Total:1500</p>
-                                        </div>
-        
-                                    </div>
-                                    <div class="modal-footer">
-                                        <div style="display: flex;width: 100%;">         
-                                        </div>
-                                    </div>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="orderModalLabel">Order Details</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Order details will be loaded here -->
+                                    <div id="order-details-content"></div>
                                 </div>
                             </div>
                         </div>
                         <!-- end of modal -->
+                        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var orderModal = document.getElementById('orderModal');
+    orderModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var orderId = button.getAttribute('data-order-id');
+        // AJAX request to get order details
+        fetch('/orderdetails/' + orderId)
+            .then(response => response.json())
+            .then(order => {
+                var orderDetailsContent = document.getElementById('order-details-content');
+                orderDetailsContent.innerHTML = `
+                    
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <p class="text-start">Item Sub-total: ${order.item_subtotal}<br>Shipping: ${order.shipping_cost}<br>Total: ${order.total}</p>
+                    </div>
+                `;
+            });
+    });
+});
+</script>
                     </div>
               
             

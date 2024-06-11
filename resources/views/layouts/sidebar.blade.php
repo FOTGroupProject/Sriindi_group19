@@ -18,7 +18,7 @@
                                 <li><a  class="nav-link" href="product"><i class="fas fa-boxes"></i><span>View Products</span> </a></li>
                                 <li><a  class="nav-link" href="ratings"><i class="fas fa-star"></i><span>Rating</span> </a></li>
                                 <li><a  class="nav-link" href="blacklist"><i class="fas fa-ban"></i><span>Blacklist</span> </a></li>
-                                <li><a  class="nav-link" href="sandp"><i class="fas fa-ban"></i><span>sandp</span> </a></li>
+                                <li><a  class="nav-link" href="pands"><i class="fas fa-ban"></i><span>sandp</span> </a></li>
 
                             </ul>
                         </div>
