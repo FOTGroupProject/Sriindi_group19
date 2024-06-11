@@ -303,10 +303,6 @@ class productController extends Controller
     $orders=orders::where('id',$id)->get();
 return  $orders;
     }
-    
-    
-
-
 }
 
 

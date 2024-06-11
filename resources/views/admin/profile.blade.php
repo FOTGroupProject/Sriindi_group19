@@ -53,7 +53,7 @@
                 <div class="container-fluid">
                    
                     <div class="row mb-3">
-                        @foreach($adminuser as $user)
+                 
                         <div class="col-lg-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="" width="160" height="160">
@@ -107,7 +107,6 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-
                                     <div class="card shadow mb-3">
                                         <div class="card-header py-3">
                                             <p class="text-primary m-0 fw-bold">User Settings</p>
@@ -116,7 +115,7 @@
                                             <form>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username" value="">{{$user->city}}</div>
+                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username" value=""></div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
@@ -156,7 +155,7 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                       
                     </div><button class="btn btn-primary" type="button" style="background: var(--bs-red);">Delete Account</button>
                     <div class="card shadow mb-5">
                        

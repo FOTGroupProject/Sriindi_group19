@@ -28,9 +28,9 @@ Route::get('/o', function () {
 Route::get('/customer', function () {
     return view('admin.customers');
 });
-Route::get('/reset', function () {
+Route::get('/reset', function (){
     return view('admin.resetpassword');
-});
+})->name('resetpassword.admin');
 Route::get('/message', function () {
     return view('admin.message');
 });

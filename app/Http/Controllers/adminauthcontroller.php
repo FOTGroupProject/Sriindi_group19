@@ -87,8 +87,8 @@ class adminauthcontroller extends Controller
     
         if ($otp == session('otp')) {
             // OTP is correct, redirect to password reset page
-            return "success"; //redirect()->route('password.reset');
-        } else{
+            return redirect()->route('resetpassword.admin');
+        }else{
             // OTP is incorrect, redirect with error message
             return redirect()->back()->withErrors(['otp' => 'Invalid OTP']);
         }

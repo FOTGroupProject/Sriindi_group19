@@ -29,7 +29,6 @@ class product extends Controller
     {
         $validatedData = $request->validate([
             'category' => 'required|string|max:255',
-
         ]);
 
         // Use the create method to store the validated data
@@ -48,7 +47,6 @@ class product extends Controller
     {
         $cat = category::findOrFail($id);
         $cat->delete();
-
         return redirect()->back()->with('success', 'Product deleted successfully');
     }
     public function procount()
@@ -68,7 +66,6 @@ class product extends Controller
         $totalusers=User::count();
         return view('/admin/index',compact('productcount','users','payment','todayearning','monthlyearning','totalusers','adminuser'));
     }
-
     public function viewproduct(){
         $products = products::all(); // Fetch all products from the database
         $categories = category::all();
@@ -95,7 +92,6 @@ class product extends Controller
     {
         $cat = category::findOrFail($id);
         $cat->delete();
-
         return redirect()->back()->with('success', 'Product deleted successfully');
     }
 
