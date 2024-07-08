@@ -17,7 +17,7 @@ class adminauthcontroller extends Controller
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:adminusers',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required|string|min:8' // Add this line for password confirmation
         ]);
@@ -148,7 +148,7 @@ class adminauthcontroller extends Controller
     {
         $validatedData = $request->validate([
             'address' => 'required|string|max:255',
-            'city' => 'required|string|email|max:255',
+            'city' => 'required|string|max:255',
             'contact' => 'required|string|max:255'
         ]);
     

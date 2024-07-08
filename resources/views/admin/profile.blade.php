@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
+
+    
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <style>
+        .image-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -55,7 +68,10 @@
                         <div class="col-lg-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="" width="160" height="160">
-                                    <div class="mb-3"><input class="btn btn-primary btn-sm" type="file">Change Photo</div>
+                                <div class="mb-3">
+                <input class="btn btn-primary btn-sm" type="file" id="imageUpload" accept="image/*">
+                <label for="imageUpload" class="btn btn-primary btn-sm">Change Photo</label>
+            </div>
                                 </div>
                             </div>
                             <div class="card shadow mb-4">
@@ -128,15 +144,15 @@
                                             <form method="get" action="/updateusersetting">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" name="username" value="{{ $adminuser->username }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" name="username" required value="{{ $adminuser->username }}"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" name="email" value="{{ $adminuser->email }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" name="email" required value="{{ $adminuser->email }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" name="first_name" value=" {{ $adminuser->first_name }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" name="first_name"required value=" {{ $adminuser->first_name }}"></div>
                                                         
                                                         @foreach ($errors->get('first_name') as $error)
                         <div class="alert alert-danger">{{ $error }}</div>
@@ -152,7 +168,7 @@
                     @endforeach
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name"  name="last_name" value=" {{ $adminuser->last_name }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" required name="last_name" value=" {{ $adminuser->last_name }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
@@ -170,8 +186,17 @@
                                                     <div class="col">
                                                         <div class="mb-3"><label class="form-label" for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city" value="{{ $adminuser->city }}"></div>
                                                     </div>
+                                                    @foreach ($errors->get('Address') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                    @foreach ($errors->get('City') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                    @foreach ($errors->get('contact') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Contact Number</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="contact" value="{{ $adminuser->contact }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Contact Number</strong></label><input class="form-control" type="text" id="country" name="contact" value="{{ $adminuser->contact }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save&nbsp;Settings</button></div>
@@ -196,6 +221,18 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script>
+    document.getElementById('imageUpload').addEventListener('change', function(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('imagePreview').style.backgroundImage = 'url(' + e.target.result + ')';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+</script>
 </body>
 
 </html>
