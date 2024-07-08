@@ -117,6 +117,29 @@
                                 <input type="text" class="form-control" id="address" name="address" autocomplete="address" required>
                             </div>
                             <div class="form-group">
+                                <label for="address">Profile Picture:</label><br>
+                                <input type="file" id="imageUpload" accept="image/*">
+                                <div id="preview"></div>
+
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            var preview = document.getElementById('preview');
+            preview.innerHTML = ''; // Clear any existing preview
+
+            var file = event.target.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+                            </div>
+                            <div class="form-group">
                                 <label for="tax_id">Tax ID:</label>
                                 <input type="text" class="form-control" id="tax_id" name="tax_id" autocomplete="taxid" required>
                             </div>

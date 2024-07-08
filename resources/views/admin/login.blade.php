@@ -32,12 +32,12 @@
 
                                         @csrf
                                         <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="username" required></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"required></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" type="password" id="InputPassword" placeholder="Password" name="password"required></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                             </div>
-                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Login</button>
+                                        </div><button class="btn btn-primary d-block btn-user w-100" type="submit"id="loginButton" disabled>Login</button>
                                        <br>
                                        @if ($errors->any())
                                             <div class="alert alert-danger">
@@ -66,6 +66,20 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var passwordInput = document.getElementById('InputPassword');
+            var loginButton = document.getElementById('loginButton');
+
+            passwordInput.addEventListener('input', function() {
+                if (passwordInput.value.length > 8) {
+                    loginButton.removeAttribute('disabled');
+                } else {
+                    loginButton.setAttribute('disabled', 'disabled');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

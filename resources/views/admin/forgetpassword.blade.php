@@ -24,23 +24,26 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Forget Passwprd</h4>
+                                        <h4 class="text-dark mb-4">Forget Password</h4>
                                     </div>
+                                    <br><br>
                                     <form class="user" action="/forgetpassform" method="post">
                                         @csrf
                                         <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email" required required></div>
                                         <button id="sendotp" class="btn btn-primary d-block btn-user w-100" type="submit">Send OTP</button>
                                     </form>
+                                    <br><br><br>
+                                   
                                     <form class="user" action="/otp" method="get">
                                         <div class="mb-3"><input class="form-control form-control-user" required type="text" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter OTP" name="otp" required></div>
-                                        <button id="otpbtn"class="btn btn-primary d-block btn-user w-100" type="submit">Verify</button>
-                                        </form>
+                                        <button id="otpbtn"class="btn btn-primary d-block btn-user w-100" type="submit" >Verify</button>
+                                    </form>
                                        <br>
                                        @if ($errors->any())
                                             <div class="alert alert-danger">
                                                 <ul>
                                                     @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
+                                                        {{ $error }}
                                                     @endforeach
                                                 </ul>
                                             </div>

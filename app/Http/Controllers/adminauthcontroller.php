@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\adminuser;
 use App\Mail\ResetPassword;
@@ -95,14 +94,81 @@ class adminauthcontroller extends Controller
     }
     public function resetpassword(Request $request){
         $validatedData = $request->validate([
-            'newpassword' => 'required|string|min:8|confirmed',
-            'newpassword_confirmation' => 'required|string|min:8' // Add this line for password confirmation
+            'newpassword' => 'required|string|min:9|confirmed',
+            'newpassword_confirmation' => 'required|string|min:9' 
             ]);
             adminuser::where('email', session('email'))->update(['password' => Hash::make($validatedData['newpassword'])]);
+            
             return redirect() ->route("admin.login");
     }
+    public function updatePassword(Request $request)
+    {
+        $validatedData = $request->validate([
+            'currentpassword' => 'required|string|min:9',
+            'newpassword' => 'required|string|min:9|confirmed',
+            'newpassword_confirmation' => 'required|string|min:9'
+        ]);
+    
+        $currentPassword = $validatedData['currentpassword'];
+        $newPassword = $validatedData['newpassword'];
+        $newPasswordConfirmation = $validatedData['newpassword_confirmation'];
+    
+        $user = adminuser::where('email', session('email'))->first();
+       // dd($currentPassword,$user->password);
+        if ($user && Hash::check($currentPassword, $user->password)) {
+            $user->update(['password' => Hash::make($newPassword)]);
+            return redirect()->back()->with('success', 'Password updated successfully.');
+        } else {
+            return redirect()->back()->withErrors(['password_error' => 'Invalid current password']);
+        }
+       
+    }
+    
+    public function updateUserSetting(Request $request)
+    {
+        $validatedData = $request->validate([
+            'username' => 'required|string|min:5|regex:/^[a-zA-Z]+$/|max:20',
+            'email' => 'required|string|email|max:255|unique:adminusers',
+            'first_name' => 'required|string|min:5|regex:/^[a-zA-Z]+$/|max:20',
+            'last_name' => 'required|string|min:5|regex:/^[a-zA-Z]+$/|max:20',
+        ]);
+    
+       
+        $user = adminuser::where('email', session('email'))->first();
+        $user->update([
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+        ]);
+    
+        return redirect()->back()->with('success', 'User settings updated successfully.');
+    }
+    public function updatecontactsetting(Request $request)
+    {
+        $validatedData = $request->validate([
+            'address' => 'required|string|max:255',
+            'city' => 'required|string|email|max:255',
+            'contact' => 'required|string|max:255'
+        ]);
+    
+       
+        $user = adminuser::where('email', session('email'))->first();
+        $user->update([
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+        ]);
+    
+        return redirect()->back()->with('success', 'User settings updated successfully.');
+    }
+    
+     
+    
     public function profile(){
-       $adminuser= adminuser::where('email', 'yohanvishvajith@gmail.com')->first();
+       $adminuser= adminuser::where('email', session('email'))->first();
+      
        return view('admin.profile', compact('adminuser'));
     }
     

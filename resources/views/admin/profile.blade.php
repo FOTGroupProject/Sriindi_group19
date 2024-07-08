@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html data-bs-theme="light">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -13,7 +12,6 @@
 
 <body id="page-top">
     <div id="wrapper">
-        
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
@@ -57,7 +55,7 @@
                         <div class="col-lg-4">
                             <div class="card mb-3">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="" width="160" height="160">
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="button">Change Photo</button></div>
+                                    <div class="mb-3"><input class="btn btn-primary btn-sm" type="file">Change Photo</div>
                                 </div>
                             </div>
                             <div class="card shadow mb-4">
@@ -65,11 +63,26 @@
                                     <h6 class="text-primary fw-bold m-0">Change Password</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form>
-                                        <div class="mb-3"><label class="form-label" for="currentpassword"><strong>Current Password</strong></label><input class="form-control" type="password" id="currentpassword" placeholder="Enter your current password" name="currentpassword"></div>
-                                        <div class="mb-3"><label class="form-label" for="newpassword"><strong>New Password</strong></label><input class="form-control" type="password" id="newpassword" placeholder="Enter your new password" name="newpassword"></div>
-                                        <div class="mb-3"><label class="form-label" for="confirmpassword"><strong>Confirm Password</strong></label><input class="form-control" type="password" id="confirmpassword" placeholder="Confirm your new password" name="confirmpassword"></div>
+                                    <form method="get" action="/updatepassword">
+                                        
+                                        <div class="mb-3"><label class="form-label" for="currentpassword" ><strong>Current Password</strong></label><input required class="form-control" type="password" id="currentpassword" placeholder="Enter your current password" name="currentpassword"></div>
+                                        <div class="mb-3"><label class="form-label" for="newpassword" ><strong>New Password</strong></label><input required class="form-control" type="password" id="newpassword" placeholder="Enter your new password" name="newpassword"></div>
+                                        <div class="mb-3"><label class="form-label" for="confirmpassword" ><strong>Confirm Password</strong></label><input required class="form-control" type="password" id="confirmpassword" placeholder="Confirm your new password" name="newpassword_confirmation"></div>
                                         <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save&nbsp;Password</button></div>
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                     @endif
+                                    @if  (Session::has('success'))
+                                    <script>
+                                        alert("{{Session::get('success')}}" );
+                                    </script>
+                                    @endif
                                     </form>
                                 </div>
                             </div>
@@ -112,21 +125,34 @@
                                             <p class="text-primary m-0 fw-bold">User Settings</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form method="get" action="/updateusersetting">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="user.name" name="username" value=""></div>
+                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" name="username" value="{{ $adminuser->username }}"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" placeholder="user@example.com" name="email"></div>
+                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" name="email" value="{{ $adminuser->email }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" placeholder="John" name="first_name"></div>
+                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" name="first_name" value=" {{ $adminuser->first_name }}"></div>
+                                                        
+                                                        @foreach ($errors->get('first_name') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                    @foreach ($errors->get('last_name') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                    @foreach ($errors->get('email') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                    @foreach ($errors->get('username') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" placeholder="Doe" name="last_name"></div>
+                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name"  name="last_name" value=" {{ $adminuser->last_name }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
@@ -138,14 +164,14 @@
                                             <p class="text-primary m-0 fw-bold">Contact Settings</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
-                                                <div class="mb-3"><label class="form-label" for="address"><strong>Address</strong></label><input class="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address"></div>
+                                            <form action="/updatecontactsetting" method="get">
+                                                <div class="mb-3"><label class="form-label" for="address"><strong>Address</strong></label><input class="form-control" type="text" id="address" placeholder="Sunset Blvd, 38" name="address" value="{{ $adminuser->address }}"></div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city"></div>
+                                                        <div class="mb-3"><label class="form-label" for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city" value="{{ $adminuser->city }}"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Contact Number</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="country"></div>
+                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Contact Number</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="contact" value="{{ $adminuser->contact }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save&nbsp;Settings</button></div>

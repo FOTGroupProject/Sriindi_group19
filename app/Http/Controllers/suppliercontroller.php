@@ -45,7 +45,11 @@ class suppliercontroller extends Controller
             'tax_id' => 'required|string|max:255',
             'active' => 'required|string|max:255',
         ]);
-   
+        if ($request->hasFile('image')) {
+            $imageName = $request->sku . '_' . time() . '.' . $request->image->extension(); 
+            $request->image->move(public_path('/products'), $imageName);
+            $product->image = $imageName;
+        }
          supplier::create($validatedData);
          return redirect()->back()->with('success2', 'supplier added successfully');
     }

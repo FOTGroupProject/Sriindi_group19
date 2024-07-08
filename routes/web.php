@@ -48,11 +48,14 @@ Route::get('/forgotpassword', function () {
 //admin auth
 Route::get('/registeradmin', [adminauthcontroller::class, 'register'])->name('register.admin');
 Route::post('/loginadmin', [adminauthcontroller::class, 'login'])->name('login.admin');
-Route::get('/resetpassword', [adminauthcontroller::class, 'resetpassword'])->name('reset.admin');
+Route::post('/resetpassword', [adminauthcontroller::class, 'resetpassword'])->name('reset.admin');
+Route::get('/updatepassword', [adminauthcontroller::class, 'updatepassword'])->name('updatepassword.admin');
 Route::post('/forgetpassform', [adminauthcontroller::class, 'forgetpassword'])->name('forget.admin');
 Route::get('/profilesetting', [adminauthcontroller::class, 'profile'])->name('profile.admin');
 Route::get('/otp', [adminauthcontroller::class, 'otpcnfm'])->name('otpcnfm.admin');
 Route::get('/profilesetting', [adminauthcontroller::class, 'profile'])->name('profile.admin');
+Route::get('/updateusersetting', [adminauthcontroller::class, 'updateusersetting'])->name('updateusersetting.admin');
+Route::get('/updatecontactsetting', [adminauthcontroller::class, 'updatecontactsetting'])->name('updatecontactsetting.admin');
 
 //message section
 Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
