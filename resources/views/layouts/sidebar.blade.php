@@ -26,7 +26,6 @@
 
                     <li class="nav-item"><a class="nav-link" href="orders"><i class="fas fa-shopping-cart"></i><span>Orders</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="customers"><i class="fas fa-users"></i><span>Customers</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="chat"><i class="fas fa-comments"></i><span>Chat</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="viewsupplier"><i class="fas fa-truck"></i><span>Suppliers</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="adminregister"><i class="fas fa-user-circle"></i><span>Register</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="adminlogin" style="background: var(--bs-danger);"><i class="fas fa-user-circle"></i><span>Logout</span></a></li>

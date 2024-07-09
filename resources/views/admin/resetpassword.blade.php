@@ -21,12 +21,13 @@
                 <div class="card-body w-100 p-3" >
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-flex">
-                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;assets/img/User_icon_2.svg.png&quot;) round;background-size: contain;"></div>
-                            </div>
+                            <div class="bg-register-image" style="background: url('assets/img/logo.png') no-repeat center; width: 400px; height: 585.9px; font-size: 15px; background-size: contain;"></div>
+                   </div>
                             <div class="col-lg-6">
+                                <br><br><br><br>
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Reset Password</h4>
+                                        <h3 class="text-dark mb-4">Reset Password</h3>
                                     </div>
                                     <form class="user" action="/resetpassword" method="post">
                                         @csrf
@@ -40,7 +41,7 @@
                                             <div class="alert alert-danger">
                                                 <ul>
                                                     @foreach ($errors->all() as $error)
-                                                        {{ $error }}
+                                                       <li> {{ $error }}</li>
                                                     @endforeach
                                                 </ul>
                                             </div>

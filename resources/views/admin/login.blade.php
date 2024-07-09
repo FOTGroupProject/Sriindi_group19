@@ -23,10 +23,10 @@
                         <div class="col-lg-5 d-none d-lg-flex" style="display: flex; justify-content: center; align-items: center;">
                     <div class="bg-register-image" style="background: url('assets/img/logo.png') no-repeat center; width: 400px; height: 585.9px; font-size: 15px; background-size: contain;"></div>
                 </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6"><br><br><br>
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        <b><h2 class="text-dark mb-4">Admin Login</h2></b>
                                     </div>
                                     <form class="user" action="/loginadmin" method="post">
 
@@ -35,7 +35,7 @@
                                         <div class="mb-3"><input class="form-control form-control-user" type="password" id="InputPassword" placeholder="Password" name="password"required></div>
                                         <div class="mb-3">
                                             <div class="custom-control custom-checkbox small">
-                                                <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                                <div class="form-check"></div>
                                             </div>
                                         </div><button class="btn btn-primary d-block btn-user w-100" type="submit"id="loginButton" disabled>Login</button>
                                        <br>
@@ -43,7 +43,7 @@
                                             <div class="alert alert-danger">
                                                 <ul>
                                                     @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
+                                                        {{ $error }}
                                                     @endforeach
                                                 </ul>
                                             </div>
@@ -51,6 +51,11 @@
                                     @if  (Session::has('success'))
                                     <script>
                                         alert("{{Session::get('success')}}" );
+                                    </script>
+                                    @endif
+                                    @if  (Session::has('success10'))
+                                    <script>
+                                        alert("{{Session::get('success10')}}" );
                                     </script>
                                     @endif
                                     </form>

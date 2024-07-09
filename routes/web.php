@@ -7,7 +7,7 @@ use App\Http\Controllers\productController;
 use App\Http\Controllers\suppliercontroller;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\adminauthcontroller;
-
+use App\Http\Controllers\ordercontroller;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +16,7 @@ Route::get('/', function () {
 Route::get('/adminregister', function () {
     return view('admin.register');
 });
+
 Route::get('/adminlogin', function () {
     return view('admin.login');
 })->name('admin.login');
@@ -56,6 +57,8 @@ Route::get('/otp', [adminauthcontroller::class, 'otpcnfm'])->name('otpcnfm.admin
 Route::get('/profilesetting', [adminauthcontroller::class, 'profile'])->name('profile.admin');
 Route::get('/updateusersetting', [adminauthcontroller::class, 'updateusersetting'])->name('updateusersetting.admin');
 Route::get('/updatecontactsetting', [adminauthcontroller::class, 'updatecontactsetting'])->name('updatecontactsetting.admin');
+Route::get('/updateadminimage', [adminauthcontroller::class, 'updateadminimage'])->name('updateadminimage.admin');
+Route::get('/deleteaccount', [adminauthcontroller::class, 'deleteaccount'])->name('order.deleteaccount');
 
 //message section
 Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
@@ -86,14 +89,13 @@ Route::get('/pands', [productController::class, 'pands'])->name('pands');
 Route::get('/deletecategory/{category_id}', [productController::class, 'deletecategory'])->name('delcategory');
 Route::get('/delattributes/{attributes}', [productController::class, 'delattributes'])->name('delattributes');
 Route::get('/deleteproduct/{product_id}', [productController::class, 'deleteproduct'])->name('deleteproduct');
-//order section
 
+//order section
 Route::get('/orderdetails/{id}', [productController::class, 'orderdetails'])->name('product.orderdetails');
 Route::get('/updateproduct', function () {
     return view('admin.updateproduct');
 });
-
-
+Route::get('/orderdetailsview/{id}', [ordercontroller::class, 'orderdetailsview'])->name('product.orderdetailsview');
 //suplier section
 Route::get('/viewsupplier', [suppliercontroller::class, 'viewsupplier'])->name('viewsupplier');
 Route::get('/editsupplier', [suppliercontroller::class, 'editsupplier'])->name('supplier.edit');
