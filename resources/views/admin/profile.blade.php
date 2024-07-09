@@ -16,7 +16,8 @@
             <div id="content">
                 <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                    <h3 class="text-dark mb-4">Profile</h3>
+                    <br>
+                    <h3 class="text-dark mb-4">Profile Settings</h3>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -39,9 +40,9 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small">xxx</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="d-none d-lg-inline me-2 text-gray-600 small"></span><img class="border rounded-circle img-profile" src="{{ $adminuser->image }}"></a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="/admin/login"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
                                     </div>
                                 </div>
                             </li>
@@ -54,9 +55,14 @@
                  
                         <div class="col-lg-4">
                             <div class="card mb-3">
-                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="" width="160" height="160">
-                                    <div class="mb-3"><input class="btn btn-primary btn-sm" type="file">Change Photo</div>
+                                <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="assets/img/user.png" width="160" height="160">
+                                    <div class="mb-3"><form action="/updateadminimage" method="get" enctype="multipart/form-data">
+                                    
+                              <input class="btn btn-primary btn-sm" type="file" accept="image/*" name="image"><br><br>
+                              <input type="submit" class="btn btn-primary btn-sm" value="Change image"></div>
+                              </form>  
                                 </div>
+                                
                             </div>
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
@@ -81,6 +87,11 @@
                                     @if  (Session::has('success'))
                                     <script>
                                         alert("{{Session::get('success')}}" );
+                                    </script>
+                                    @endif
+                                    @if  (Session::has('error2'))
+                                    <script>
+                                        alert("{{Session::get('error2')}}" );
                                     </script>
                                     @endif
                                     </form>
@@ -128,15 +139,15 @@
                                             <form method="get" action="/updateusersetting">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" name="username" value="{{ $adminuser->username }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" name="username" required value="{{ $adminuser->username }}"></div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" name="email" value="{{ $adminuser->email }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="email"><strong>Email Address</strong></label><input class="form-control" type="email" id="email" name="email" required value="{{ $adminuser->email }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" name="first_name" value=" {{ $adminuser->first_name }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>First Name</strong></label><input class="form-control" type="text" id="first_name" name="first_name"required value=" {{ $adminuser->first_name }}"></div>
                                                         
                                                         @foreach ($errors->get('first_name') as $error)
                         <div class="alert alert-danger">{{ $error }}</div>
@@ -152,7 +163,7 @@
                     @endforeach
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name"  name="last_name" value=" {{ $adminuser->last_name }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Last Name</strong></label><input class="form-control" type="text" id="last_name" required name="last_name" value=" {{ $adminuser->last_name }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
@@ -170,8 +181,17 @@
                                                     <div class="col">
                                                         <div class="mb-3"><label class="form-label" for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Los Angeles" name="city" value="{{ $adminuser->city }}"></div>
                                                     </div>
+                                                    @foreach ($errors->get('Address') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                    @foreach ($errors->get('City') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
+                    @foreach ($errors->get('contact') as $error)
+                        <div class="alert alert-danger">{{ $error }}</div>
+                    @endforeach
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Contact Number</strong></label><input class="form-control" type="text" id="country" placeholder="USA" name="contact" value="{{ $adminuser->contact }}"></div>
+                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Contact Number</strong></label><input class="form-control" type="number" id="country"  name="contact" value="{{ $adminuser->contact }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save&nbsp;Settings</button></div>
@@ -182,7 +202,8 @@
                             </div>
                         </div>
                        
-                    </div><button class="btn btn-primary" type="button" style="background: var(--bs-red);">Delete Account</button>
+                    </div><a href="/deleteaccount"><button class="btn btn-primary" type="button" style="background: var(--bs-red);">Delete Account</button>
+                    <a href="{{ url()->previous() }}"><button class="btn btn-primary" type="button" style="background: var(--bs-green);">Back</button></a>
                     <div class="card shadow mb-5">
                        
                         

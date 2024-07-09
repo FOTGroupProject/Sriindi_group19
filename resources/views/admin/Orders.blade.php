@@ -43,7 +43,8 @@
                                 <tr>
                                     <td>{{$order->id}}</td>
                                     <td>{{$order->created_at}}</td>
-                                    <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal" data-order-id="{{$order->id}}">{{$order->status}}</button></td>
+                                    <td><a href="/orderdetailsview/{{$order->id}}"><button class="btn btn-primary">{{$order->status}}</button></a></td>
+                                    <!-- <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#orderModal" data-order-id="{{$order->id}}">{{$order->status}}</button></td> -->
                                     <td>{{$order->total}}</td>
                                 </tr>
                                 @endforeach
@@ -67,34 +68,17 @@
                             </div>
                         </div>
                         <!-- model start -->
-                        <div class="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <!-- <div class="modal fade" id="orderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="orderModalLabel">Order Details</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- Order details will be loaded here -->
-                                    <div id="order-details-content"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of modal -->
-                        <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var orderModal = document.getElementById('orderModal');
-    orderModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget;
-        var orderId = button.getAttribute('data-order-id');
-        // AJAX request to get order details
-        fetch('/orderdetails/' + orderId)
-            .then(response => response.json())
-            .then(order => {
-                var orderDetailsContent = document.getElementById('order-details-content');
-                orderDetailsContent.innerHTML = `
-                    
-                    <div class="table-responsive">
+                                    
+                                     Order details will be loaded here -->
+                                    <!--<div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -111,14 +95,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div>
                         <p class="text-start">Item Sub-total: ${order.item_subtotal}<br>Shipping: ${order.shipping_cost}<br>Total: ${order.total}</p>
                     </div>
-                `;
-            });
-    });
-});
-</script>
+                                    <div id="order-details-content"></div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- end of modal -->
+                       
                     </div>
-              
-            
             @include('layouts.footer')
             </div>
         </div>

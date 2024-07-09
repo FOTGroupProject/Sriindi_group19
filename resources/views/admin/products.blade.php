@@ -25,6 +25,7 @@
                             <select style="text-align: right;position: relative;" onchange="filterProducts()"id="productoption">
                                 <option value="Instock">Instock</option>
                                 <option value="outstock">outstock</option>
+                                <option value="outstock">lowstock</option>
                                 <option value="Popularity" selected>Popularity</option>
                                 <option value="Blacklist">Blacklist</option>
                             </select>
@@ -133,8 +134,21 @@
                             else if (selectedValue === 'outstock'){
                                 for (var i = 1; i < rows.length; i++) {
                                     var cells = rows[i].cells;
-                                    var quantity = parseInt(cells[6].innerText.trim());
-                                    if (quantity < 10) {
+                                    var quantity = parseInt(cells[7].innerText.trim());
+                                    if (quantity > 1) {
+                                        rows[i].style.display = 'table-row';  
+                                    } else {
+                                        rows[i].style.display = 'none';
+                                    
+                                    }
+                                    
+                                }
+                            }
+                            else if (selectedValue === 'lowstock'){
+                                for (var i = 1; i < rows.length; i++) {
+                                    var cells = rows[i].cells;
+                                    var quantity = parseInt(cells[7].innerText.trim());
+                                    if (quantity <6) {
                                         rows[i].style.display = 'table-row';  
                                     } else {
                                         rows[i].style.display = 'none';
@@ -145,7 +159,8 @@
                             }else if(selectedValue === 'Instock'){
                                 for (var i = 1; i < rows.length; i++) {
                                     var cells = rows[i].cells;
-                                    var quantity = parseInt(cells[6].innerText.trim());
+                                    var quantity = parseInt(cells[7].innerText.trim());
+                                    console.log(quantity);
                                     if (quantity > 5) {
                                         rows[i].style.display = 'table-row';  
                                     } else {
@@ -156,7 +171,7 @@
                             }else if(selectedValue === 'Blacklist'){
                                 for(var i = 1; i < rows.length; i++) {
                                     var cells = rows[i].cells;
-                                    var blist = cells[9].innerText.trim(); 
+                                    var blist = cells[].innerText.trim(); 
                                     if (blist =="Yes"){
                                         rows[i].style.display = 'table-row';  
                                     }
@@ -179,7 +194,7 @@
                                         <div class="modal-body">
                                             <form method="get" action="/updateproduct/{{ $product->id }}">
                                                 <label class="form-label">Name</label><input class="form-control" type="text" name="name"value="{{ $product->name }}">
-                                                <label class="form-label">Short Description</label><textarea class="form-control" rows="4" cols="10" name="sdescription" required value="{{ $product->sdescription }}"></textarea><br>
+                                                <label class="form-label">Short Description</label><textarea class="form-control" rows="4" cols="10" name="sdescription" required >{{ $product->sdescription }}</textarea><br>
                                                 <label class="form-label">Image</label><br><img src="products/{{$product->image }}" width="50px" height="50px"><br>
                                                 <label class="form-label">Upload Image</label><input class="form-control" type="file" name="image">
                                                 <label class="form-label">SKU</label><input class="form-control" type="text" name="sku"required value="{{ $product->sku }}">

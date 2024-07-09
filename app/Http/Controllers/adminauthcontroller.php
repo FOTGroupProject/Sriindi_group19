@@ -9,17 +9,14 @@ use Illuminate\Support\Facades\Mail;
 
 class adminauthcontroller extends Controller
 {
-  
-    
     public function register(Request $request)
     {
-       
         $validatedData = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:adminusers',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string|min:8' // Add this line for password confirmation
+            'first_name' => 'required|string|max:255|alpha',
+            'last_name' => 'required|string|max:255|alpha',
+            'email' => 'required|string|email|unique:adminusers,email|max:255',
+            'password' => 'required|string|min:10|max:255|confirmed',
+            'password_confirmation' => 'required|string|min:10||max:255' // Add this line for password confirmation
         ]);
     
         // Creating a new AdminUser instance
@@ -32,6 +29,7 @@ class adminauthcontroller extends Controller
     
         return redirect()->route('admin.login')->with('success', 'Account created successfully please login to continue');
         }
+
     public function login(Request $request)
     {
         $validatedData = $request->validate([
@@ -99,7 +97,7 @@ class adminauthcontroller extends Controller
             ]);
             adminuser::where('email', session('email'))->update(['password' => Hash::make($validatedData['newpassword'])]);
             
-            return redirect() ->route("admin.login");
+            return redirect() ->route("admin.login")>with('success10', 'Password reset Successfull.');;
     }
     public function updatePassword(Request $request)
     {
@@ -128,7 +126,7 @@ class adminauthcontroller extends Controller
     {
         $validatedData = $request->validate([
             'username' => 'required|string|min:5|regex:/^[a-zA-Z]+$/|max:20',
-            'email' => 'required|string|email|max:255|unique:adminusers',
+            //'email' => 'required|string|email|max:255|unique:adminusers',
             'first_name' => 'required|string|min:5|regex:/^[a-zA-Z]+$/|max:20',
             'last_name' => 'required|string|min:5|regex:/^[a-zA-Z]+$/|max:20',
         ]);
@@ -137,34 +135,60 @@ class adminauthcontroller extends Controller
         $user = adminuser::where('email', session('email'))->first();
         $user->update([
             'username' => $validatedData['username'],
-            'email' => $validatedData['email'],
+          
             'first_name' => $validatedData['first_name'],
             'last_name' => $validatedData['last_name'],
         ]);
-    
-        return redirect()->back()->with('success', 'User settings updated successfully.');
+        $adminuser= adminuser::where('email', session('email'))->first();
+      
+        return redirect()->back()->with('success', 'User settings updated successfully.')->with(compact('adminuser'));
+
     }
     public function updatecontactsetting(Request $request)
     {
         $validatedData = $request->validate([
             'address' => 'required|string|max:255',
-            'city' => 'required|string|email|max:255',
+            'city' => 'required|string|max:255',
             'contact' => 'required|string|max:255'
         ]);
     
        
         $user = adminuser::where('email', session('email'))->first();
         $user->update([
-            'username' => $validatedData['username'],
-            'email' => $validatedData['email'],
-            'first_name' => $validatedData['first_name'],
-            'last_name' => $validatedData['last_name'],
+            'address' => $validatedData['address'],
+            'city' => $validatedData['city'],
+            'contact' => $validatedData['contact']
         ]);
     
         return redirect()->back()->with('success', 'User settings updated successfully.');
     }
     
-     
+    public function updateadminimage(Request $request)
+    {
+        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:9048',
+        ]);
+    
+        $imageName = time().'.'.$request->image->extension(); 
+        $request->image->move(public_path('/admin'), $imageName);
+    
+        $user = adminuser::where('email', session('email'))->first();
+        $user->update([
+            'image' => $imageName,
+        ]);
+    
+        return redirect()->back()->with('success', 'Image updated successfully.');
+    }
+    public function deleteaccount(){
+        $adminuser= adminuser::count();
+        if($adminuser>1){
+            adminuser::where('email', session('email'))->delete();
+            return redirect()->route('admin.login')->with('success', 'Account deleted successfully.');
+        }
+        else{
+            return redirect()->back()->with('error2', 'You cannot delete. the only one account in the system.');
+        }
+     }
     
     public function profile(){
        $adminuser= adminuser::where('email', session('email'))->first();
