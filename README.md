@@ -5,7 +5,7 @@
  
 </head>
 <body>
-  <h1>Sriindi Group 19 E-Commerce Platform</h1>
+  <h1>Sriindi E-Commerce Platform</h1>
   <p>
     <span class="badge">Laravel</span>
     <span class="badge">MySQL</span>
