@@ -2,17 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sriindi Group 19 E-Commerce Platform - Setup Guide</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: Arial, sans-serif; margin: 2em; background: #f9f9f9; color: #222; }
-    h1, h2, h3 { color: #2d3e50; }
-    code, pre { background: #eee; padding: 2px 6px; border-radius: 4px; }
-    pre { padding: 1em; overflow-x: auto; }
-    ul { margin-left: 2em; }
-    .section { margin-bottom: 2em; }
-    .badge { background: #0052cc; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.9em; }
-  </style>
+ 
 </head>
 <body>
   <h1>Sriindi Group 19 E-Commerce Platform</h1>
@@ -131,9 +121,6 @@ php artisan storage:link</code></pre>
     <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</code></pre>
   </div>
 
-  <div class="section">
-    <h2>License</h2>
-    <p>MIT License - See <code>LICENSE.md</code> for details.</p>
-  </div>
+
 </body>
 </html>
